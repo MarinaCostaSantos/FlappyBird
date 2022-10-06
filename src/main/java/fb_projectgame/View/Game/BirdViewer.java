@@ -1,4 +1,4 @@
-package fb_projectgame.View;
+package fb_projectgame.View.Game;
 
 import fb_projectgame.Model.Elements.Bird;
 import fb_projectgame.gui.GUI;

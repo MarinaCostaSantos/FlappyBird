@@ -6,7 +6,7 @@ import fb_projectgame.Model.Position;
 
 import java.util.*;
 
-public class PipeController extends GameController {
+public class PipeController extends Controller {
 
     public PipeController(Arena arena) {
         super(arena);

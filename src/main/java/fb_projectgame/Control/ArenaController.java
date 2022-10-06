@@ -1,18 +1,19 @@
 package fb_projectgame.Control;
 
 import fb_projectgame.Model.Arena.Arena;
-import fb_projectgame.View.ArenaViewer;
+import fb_projectgame.View.Game.ArenaViewer;
 import fb_projectgame.gui.GUI;
 
 import java.io.IOException;
 
-public class ArenaController extends GameController {
+public class ArenaController extends Controller {
 
     private final BirdController birdController;
     private final PipeController piperController;
 
     private final ArenaViewer viewer;
     private GUI gui;
+
 
     public ArenaController(Arena arena, ArenaViewer viewer, GUI gui) {
         super(arena);

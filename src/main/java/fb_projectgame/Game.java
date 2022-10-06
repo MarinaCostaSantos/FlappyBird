@@ -2,7 +2,7 @@ package fb_projectgame;
 
 import fb_projectgame.Control.ArenaController;
 import fb_projectgame.Model.Arena.Arena;
-import fb_projectgame.View.ArenaViewer;
+import fb_projectgame.View.Game.ArenaViewer;
 import fb_projectgame.gui.GUI;
 import fb_projectgame.gui.LanternaGUI;
 

@@ -1,12 +1,7 @@
-package fb_projectgame.View;
+package fb_projectgame.View.Game;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.Model.Elements.Element;
-import fb_projectgame.Model.Elements.Pipe;
-import fb_projectgame.Model.Position;
 import fb_projectgame.gui.GUI;
 
 import java.io.IOException;

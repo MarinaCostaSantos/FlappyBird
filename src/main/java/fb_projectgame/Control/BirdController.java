@@ -4,7 +4,7 @@ import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.Model.Position;
 import fb_projectgame.gui.GUI;
 
-public class BirdController extends GameController {
+public class BirdController extends Controller {
 
     public BirdController(Arena arena) {
         super(arena);

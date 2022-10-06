@@ -1,8 +1,6 @@
-package fb_projectgame.View;
+package fb_projectgame.View.Game;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
 import fb_projectgame.Model.Elements.Pipe;
-import fb_projectgame.Model.Position;
 import fb_projectgame.gui.GUI;
 
 public class PipeViewer implements ElementViewer<Pipe> {
