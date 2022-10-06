@@ -29,10 +29,11 @@ public class ArenaController extends GameController {
         int FPS = 20;
         int frameTime = 1000 / FPS;
         long lastPipeMovement = 0;
+        long lastBirdMovement = 0;
 
-//getArena().Collision(getArena().getBird().getPosition()) == false
 
-        while (true) {
+
+        while (getArena().Collision(getArena().getBird().getPosition()) == false) {
             long startTime = System.currentTimeMillis();
 
             viewer.draw(getArena());
@@ -40,9 +41,12 @@ public class ArenaController extends GameController {
             GUI.ACTION action = gui.getNextAction();
             if (action == GUI.ACTION.QUIT) break;
 
-            birdController.doAction(action);
+            if (startTime - lastBirdMovement > 100) {
+                birdController.doAction(action);
+                lastBirdMovement = startTime;
+            }
 
-            if (startTime - lastPipeMovement > 250) {
+            if (startTime - lastPipeMovement > 150) {
                 piperController.movePipes();
                 lastPipeMovement = startTime;
             }
@@ -57,6 +61,7 @@ public class ArenaController extends GameController {
 
         }
 
+        System.out.println("Game over");
         viewer.close();
     }
 }

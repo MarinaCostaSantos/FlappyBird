@@ -79,7 +79,7 @@ public class Arena {
 
         Random random = new Random();
         List<Pipe> pipes = new ArrayList<>();
-        int aux_x = 2* this.width/5;   //posição x dos tubos
+        int aux_x = 9* this.width/10;   //posição x dos tubos
 
 
         //i - nr tubos
@@ -113,7 +113,7 @@ public class Arena {
     }
 
     public Bird createBird() {
-        return new Bird(this.width / 5, this.height / 2);
+        return new Bird(this.width / 5, 1);
     }
 }
 
