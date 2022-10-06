@@ -1,7 +1,11 @@
 package fb_projectgame.View;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.Model.Elements.Element;
+import fb_projectgame.Model.Elements.Pipe;
 import fb_projectgame.Model.Position;
 import fb_projectgame.gui.GUI;
 
@@ -18,9 +22,13 @@ public class ArenaViewer {
     public void draw(Arena arena) throws IOException {
         gui.clear();
 
-        drawElements(arena.getPipes(), new PipeViewer());
         drawElement(arena.getBird(), new BirdViewer());
 
+        for (int i=0; i<arena.getPipes().size(); i++){
+            if (arena.getPipes().get(i).getPosition().getX() >=0 || arena.getPipes().get(i).getPosition().getX() <= arena.getWidth()){
+                drawElement(arena.getPipes().get(i), new PipeViewer());
+            }
+        }
 
         gui.refresh();
     }

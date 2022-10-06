@@ -14,12 +14,15 @@ public class Arena {
 
     private Bird bird;
 
-    private List<Pipe> pipes;
+    public List<Pipe> pipes;
 
 
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
+
+        this.setBird(createBird());
+        this.setPipes(createPipes());
     }
 
     public int getWidth() {
@@ -50,70 +53,67 @@ public class Arena {
         for (Pipe pipe : pipes)
 
             //colisão lateral
-            if ( (position.getY() <= pipe.getY1() && position.getX() == pipe.getX()) ||  (position.getY() >= pipe.getY2() && position.getX() == pipe.getX())) {
+            if ( (position.getY() <= pipe.getY1() && position.getX() == pipe.getPosition().getX()) ||  (position.getY() >= pipe.getY2() && position.getX() == pipe.getPosition().getX())) {
                 return true;
             }
             //colisão superior
-            else if (position.getY() == pipe.getY1() && (position.getX()==pipe.getX()  || position.getX()==pipe.getX()+1) ){
+            else if (position.getY() == pipe.getY1() && (position.getX()==pipe.getPosition().getX()  || position.getX()==pipe.getPosition().getX()+1) ){
                 return true;
             }
             //colisão inferior
-            else if (position.getY() == pipe.getY2() && (position.getX()==pipe.getX()  || position.getX()==pipe.getX()+1) ){
+            else if (position.getY() == pipe.getY2() && (position.getX()==pipe.getPosition().getX()  || position.getX()==pipe.getPosition().getX()+1) ){
                 return true;
             }
+            //colisão céu e solo
+            else if (position.getY() == this.getHeight() || position.getY() ==0){
+                return true;
+            }
+
 
         return false;
     }
 
-
-    public Arena createArena() {
-
-        Arena arena = new Arena(this.width,this.height);
-
-        arena.setBird(createBird());
-        arena.setPipes(createPipes());
-
-        return arena;
-    }
 
 
     public List<Pipe> createPipes() {
 
         Random random = new Random();
         List<Pipe> pipes = new ArrayList<>();
-        int aux_x = this.width/2;
+        int aux_x = 2* this.width/5;   //posição x dos tubos
 
+
+        //i - nr tubos
         for (int i = 0; i < 2000; i++) {
 
-            if (i <= 250) {
+            if (i <= 250) { //1ºnível
 
                 pipes.add(new Pipe(aux_x, this.height));
-                aux_x += 150;
+                aux_x += 20;
             }
 
-            if (i > 250 && i <= 600) {
+            if (i > 250 && i <= 600) {//2ºnível
 
                 pipes.add(new Pipe(aux_x, this.height));
-                aux_x += 120;
+                aux_x += 17;
             }
 
-            if (i > 600 && i < 1200) {
+            if (i > 600 && i < 1200) {//3ºnível
 
                 pipes.add(new Pipe(aux_x, this.height));
-                aux_x += 90;
+                aux_x += 12;
             }
 
-            if (i > 1200 && i < 2000) {
+            if (i > 1200 && i < 2000) {//4ºnível
 
                 pipes.add(new Pipe(aux_x, this.height));
-                aux_x += 50;
+                aux_x += 10;
             }
         }
         return pipes;
     }
 
     public Bird createBird() {
-        return new Bird(this.width / 4, this.height / 2);
+        return new Bird(this.width / 5, this.height / 2);
     }
 }
 

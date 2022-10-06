@@ -16,7 +16,7 @@ public class Game {
     }
 
     private static void createGame() throws FontFormatException, IOException, URISyntaxException {
-        Arena arena = new Arena(50,50).createArena();
+        Arena arena = new Arena(40,20);
         GUI gui = new LanternaGUI(arena.getWidth(), arena.getHeight());
 
         ArenaViewer viewer = new ArenaViewer(gui);

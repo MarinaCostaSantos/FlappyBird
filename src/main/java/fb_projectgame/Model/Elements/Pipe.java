@@ -9,10 +9,8 @@ import java.util.Random;
 
 public class Pipe extends Element {
 
-    private int x;
     private int y1;
     private int y2;
-    final private int vx;
     final private int h;
 
     final private int ymax;
@@ -22,9 +20,7 @@ public class Pipe extends Element {
 
         Random random=new Random();
 
-        this.x=x;
         this.h=10;
-        this.vx=1;
 
         this.y1= random.nextInt(ymax-this.h-1)+1;
         this.y2=this.h+this.y1;
@@ -33,14 +29,6 @@ public class Pipe extends Element {
 
     }
 
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
 
     public int getY1() {
         return y1;
@@ -58,10 +46,6 @@ public class Pipe extends Element {
         this.y2 = y2;
     }
 
-    public int getVx() {
-        return vx;
-    }
-
     public int getH() {
         return h;
     }
@@ -69,5 +53,7 @@ public class Pipe extends Element {
     public int getYmax() {
         return ymax;
     }
+
+
 
 }

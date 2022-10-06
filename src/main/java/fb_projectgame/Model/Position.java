@@ -40,9 +40,7 @@ public class Position {
         return new Position(x, y + 1);
     }
 
-    public Position run(int vx) {
-        return new Position(x - vx, y );
-    }
+
 
 
     @Override

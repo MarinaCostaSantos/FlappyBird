@@ -36,11 +36,12 @@ public class LanternaGUI implements GUI {
         screen.setCursorPosition(null);
         screen.startScreen();
         screen.doResizeIfNecessary();
+
         return screen;
     }
 
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
-        TerminalSize terminalSize = new TerminalSize(width, height + 1);
+        TerminalSize terminalSize = new TerminalSize(width, height);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
                 .setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
@@ -76,16 +77,17 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawBird (Position position) {
-        this.screen.newTextGraphics().setBackgroundColor(TextColor.Factory.fromString("#F1EB3E"));
-        this.screen.newTextGraphics().fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
-
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setBackgroundColor(TextColor.Factory.fromString("#F3C91B"));
+        tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
     }
 
     @Override
     public void drawPipe(Pipe pipe) {
-        this.screen.newTextGraphics().setBackgroundColor(TextColor.Factory.fromString("#6BCF68"));
-        this.screen.newTextGraphics().fillRectangle(new TerminalPosition(pipe.getX(), 0), new TerminalSize(1, pipe.getY1()), ' ');
-        this.screen.newTextGraphics().fillRectangle(new TerminalPosition(pipe.getX(), pipe.getY2()), new TerminalSize(1, pipe.getYmax() ), ' ');
+        TextGraphics tg = screen.newTextGraphics();
+        tg.setBackgroundColor(TextColor.Factory.fromString("#6BCF68"));
+        tg.fillRectangle(new TerminalPosition(pipe.getPosition().getX(), 0), new TerminalSize(1, pipe.getY1()), ' ');
+        tg.fillRectangle(new TerminalPosition(pipe.getPosition().getX(), pipe.getY2()), new TerminalSize(1, pipe.getYmax() ), ' ');
     }
 
 
@@ -105,6 +107,12 @@ public class LanternaGUI implements GUI {
     @Override
     public void clear() {
         screen.clear();
+
+        TextGraphics tg = screen.newTextGraphics();
+
+        tg.setBackgroundColor(TextColor.Factory.fromString("#C4F5FE"));
+        tg.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(screen.getTerminalSize().getColumns(),screen.getTerminalSize().getRows() ), ' ');
+
     }
 
     @Override
