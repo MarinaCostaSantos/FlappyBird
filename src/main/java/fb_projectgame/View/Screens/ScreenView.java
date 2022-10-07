@@ -93,14 +93,13 @@ public abstract class ScreenView implements GUI{
         return ACTION.NONE;
     }
 
-    @Override
+
     public void drawBird (Position position) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.Factory.fromString("#F3C91B"));
         tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
     }
 
-    @Override
     public void drawPipe(Pipe pipe) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setBackgroundColor(TextColor.Factory.fromString("#6BCF68"));
@@ -109,7 +108,6 @@ public abstract class ScreenView implements GUI{
     }
 
 
-    @Override
     public void drawText(Position position, String text, String color) {
         TextGraphics tg = screen.newTextGraphics();
         tg.setForegroundColor(TextColor.Factory.fromString(color));

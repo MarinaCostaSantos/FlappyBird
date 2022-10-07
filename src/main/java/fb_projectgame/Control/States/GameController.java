@@ -1,6 +1,7 @@
 package fb_projectgame.Control.States;
 
 import fb_projectgame.Constants;
+import fb_projectgame.Control.Game.Action;
 import fb_projectgame.Control.Game.BirdGameController;
 import fb_projectgame.Control.Game.PipeGameController;
 import fb_projectgame.Model.Arena.Arena;
@@ -56,18 +57,19 @@ public class GameController implements StateController, KeyListener {
         long lastPipeMovement = 0;
         long lastBirdMovement = 0;
 
+        Action action = Action.NONE;
+
+        getScreenView().initScreen();
+        getScreenView().addKeyListenner(this);
 
         while (context.getApplicationState() == ApplicationState.Game && getArena().Collision(getArena().getBird().getPosition()) == false) {
             long startTime = System.currentTimeMillis();
 
-           // viewer.draw(getArena());
             getScreenView().draw();
 
-            GUI.ACTION action = this.screenView.getGui().getNextAction();
-            if (action == GUI.ACTION.QUIT) break;
 
             if (startTime - lastBirdMovement > 100) {
-                birdController.doAction(action);
+                birdController.downBird();
                 lastBirdMovement = startTime;
             }
 
@@ -85,6 +87,10 @@ public class GameController implements StateController, KeyListener {
             }
 
         }
+
+        getScreenView().removeKeyListenner(this);
+        getScreenView().close();
+
     }
 
 
@@ -104,21 +110,27 @@ public class GameController implements StateController, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 
-            try {
+
+        try {
+            if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 nextState();
-            } catch (URISyntaxException u){
-                u.printStackTrace();
-            }catch (FontFormatException f){
-                f.printStackTrace();
-            }catch (IOException i){
-                i.printStackTrace();
-            }
 
+            if (e.getKeyCode() == KeyEvent.VK_SPACE)
+                this.birdController.jumpBird();
+
+        } catch (URISyntaxException u) {
+            u.printStackTrace();
+        } catch (FontFormatException f) {
+            f.printStackTrace();
+        } catch (IOException i) {
+            i.printStackTrace();
         }
-
     }
+
+
+
+
 
     @Override
     public void keyReleased(KeyEvent e) {
