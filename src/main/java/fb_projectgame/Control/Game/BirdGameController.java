@@ -1,12 +1,12 @@
-package fb_projectgame.Control;
+package fb_projectgame.Control.Game;
 
 import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.Model.Position;
 import fb_projectgame.gui.GUI;
 
-public class BirdController extends Controller {
+public class BirdGameController extends GameController {
 
-    public BirdController(Arena arena) {
+    public BirdGameController(Arena arena) {
         super(arena);
     }
 

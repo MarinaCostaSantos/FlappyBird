@@ -1,4 +1,4 @@
-package fb_projectgame.Control;
+package fb_projectgame.Control.Game;
 
 import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.Model.Elements.Pipe;
@@ -6,9 +6,9 @@ import fb_projectgame.Model.Position;
 
 import java.util.*;
 
-public class PipeController extends Controller {
+public class PipeGameController extends GameController {
 
-    public PipeController(Arena arena) {
+    public PipeGameController(Arena arena) {
         super(arena);
     }
 

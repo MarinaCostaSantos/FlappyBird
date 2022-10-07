@@ -11,7 +11,7 @@ repositories {
 }
 
 application {
-    mainClass.set('fb_projectgame.Game')
+    mainClass.set('fb_projectgame.Application')
 }
 
 dependencies {

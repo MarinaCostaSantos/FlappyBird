@@ -57,11 +57,11 @@ public class Arena {
                 return true;
             }
             //colisão superior
-            else if (position.getY() == pipe.getY1() && (position.getX()==pipe.getPosition().getX()  || position.getX()==pipe.getPosition().getX()+1) ){
+            else if (position.getY() == pipe.getY1() && position.getX()==pipe.getPosition().getX()  ){
                 return true;
             }
             //colisão inferior
-            else if (position.getY() == pipe.getY2() && (position.getX()==pipe.getPosition().getX()  || position.getX()==pipe.getPosition().getX()+1) ){
+            else if (position.getY() == pipe.getY2() && position.getX()==pipe.getPosition().getX()){
                 return true;
             }
             //colisão céu e solo
@@ -79,7 +79,7 @@ public class Arena {
 
         Random random = new Random();
         List<Pipe> pipes = new ArrayList<>();
-        int aux_x = 9* this.width/10;   //posição x dos tubos
+        int aux_x = 4* this.width/5;   //posição x dos tubos
 
 
         //i - nr tubos
@@ -113,7 +113,7 @@ public class Arena {
     }
 
     public Bird createBird() {
-        return new Bird(this.width / 5, 1);
+        return new Bird(this.width / 5, this.height/3);
     }
 }
 

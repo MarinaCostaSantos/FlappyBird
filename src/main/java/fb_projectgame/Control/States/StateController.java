@@ -1,14 +1,13 @@
 package fb_projectgame.Control.States;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public interface StateController {
-    void run() throws IOException;
+    void run() throws IOException, FontFormatException, URISyntaxException;
 
-    void nextState();
+    void nextState() throws URISyntaxException, FontFormatException, IOException;
 
-    public enum ApplicationState {
-        Menu, Game, LeaderBoard,Instructions, Exit, GameOver
-    }
 
 }

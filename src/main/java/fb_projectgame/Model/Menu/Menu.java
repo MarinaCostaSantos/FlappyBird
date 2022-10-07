@@ -2,21 +2,20 @@ package fb_projectgame.Model.Menu;
 
 public class Menu {
 
-    private MENU_Items selected;
-    enum MENU_Items {PlAY, INSTRUCTIONS, EXIT};
+    private MenuItems selected;
     private boolean choosed;
 
 
     public Menu(){
-        selected=MENU_Items.PlAY;
+        selected=MenuItems.PLAY;
         choosed = false;
     }
 
     public void selectNext(){
         if(!choosed) {
             switch (selected) {
-                case PlAY -> selected = MENU_Items.INSTRUCTIONS;
-                case INSTRUCTIONS, EXIT -> selected = MENU_Items.EXIT;
+                case PLAY -> selected = MenuItems.INSTRUCTIONS;
+                case INSTRUCTIONS, EXIT -> selected = MenuItems.EXIT;
             };
         }
     }
@@ -24,14 +23,14 @@ public class Menu {
     public void selectprevious(){
         if(!choosed) {
             switch (selected) {
-                case PlAY -> selected = MENU_Items.PlAY;
-                case INSTRUCTIONS -> selected = MENU_Items.PlAY;
-                case EXIT -> selected = MENU_Items.INSTRUCTIONS;
+                case PLAY -> selected = MenuItems.PLAY;
+                case INSTRUCTIONS -> selected = MenuItems.PLAY;
+                case EXIT -> selected = MenuItems.INSTRUCTIONS;
             }
         }
     }
 
-    public MENU_Items getSelected() {
+    public MenuItems getSelected() {
         return selected;
     }
 
