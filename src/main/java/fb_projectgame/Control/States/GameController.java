@@ -57,7 +57,6 @@ public class GameController implements StateController, KeyListener {
         long lastPipeMovement = 0;
         long lastBirdMovement = 0;
 
-        Action action = Action.NONE;
 
         getScreenView().initScreen();
         getScreenView().addKeyListenner(this);
@@ -87,6 +86,8 @@ public class GameController implements StateController, KeyListener {
             }
 
         }
+
+        nextState();
 
         getScreenView().removeKeyListenner(this);
         getScreenView().close();
