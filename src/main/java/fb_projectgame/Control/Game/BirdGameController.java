@@ -22,8 +22,4 @@ public class BirdGameController extends GameController {
         arena.getBird().setPosition(position);
     }
 
-    public void doAction(GUI.ACTION action) {
-        if (action == GUI.ACTION.JUMP) jumpBird();
-        if (action == GUI.ACTION.NONE) downBird();
-    }
 }
