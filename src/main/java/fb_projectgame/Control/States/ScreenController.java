@@ -1,5 +1,8 @@
 package fb_projectgame.Control.States;
 
+import fb_projectgame.Control.MusicManager;
+import fb_projectgame.Control.Sounds;
+
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -30,20 +33,20 @@ public class ScreenController {
         switch (state){
             case Game -> stateControler=new GameController(this);
             case Menu -> {
-                /*if (!MusicManager.getInstance().isPlaying(Sounds.SOUNDTRACK)) {
+                if (!MusicManager.getInstance().isPlaying(Sounds.SOUNDTRACK)) {
                     MusicManager.getInstance().stopAll();
                     MusicManager.getInstance().start(Sounds.SOUNDTRACK);
-                }*/
+                }
                 stateControler = new MenuController(this);
             }
            case Instructions -> stateControler = new InstructionsController(this);
             case GameOver -> {
-                /*MusicManager.getInstance().stopAll();
-                MusicManager.getInstance().start(Sounds.GAMEOVER);*/
+                MusicManager.getInstance().stopAll();
+                MusicManager.getInstance().start(Sounds.GAMEOVER);
                 stateControler = new GameOverController(this);
             }
             case Exit-> {
-                //MusicManager.getInstance().stopAll();
+                MusicManager.getInstance().stopAll();
                 stateControler=null;
             }
         }

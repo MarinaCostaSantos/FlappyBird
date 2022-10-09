@@ -4,7 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import fb_projectgame.Constants;
 
-import java.awt.*;
+
 import java.io.IOException;
 
 public class GameOverScreen extends ScreenView {
@@ -18,11 +18,15 @@ public class GameOverScreen extends ScreenView {
     @Override
     public void draw() throws IOException {
         clear();
+        setForegroundColor("#000000");
+
         String gameOver = "G A M E   O V E R";
         String score = "Score : " + scoreValue;
-        setForegroundColor();
+        String press = "Press ESC to return to Menu";
+
         getGraphics().putString(getTerminalPosition(0.3, gameOver.length()), gameOver);
         getGraphics().putString(getTerminalPosition(0.4, score.length()), score);
+        getGraphics().putString(getTerminalPosition(0.8, press.length()), press);
 
         refresh();
     }
@@ -40,9 +44,7 @@ public class GameOverScreen extends ScreenView {
         scoreValue = Integer.toString(score);
     }
 
-    public String getScoreValue() {
-        return scoreValue;
-    }
+
 
 
 }

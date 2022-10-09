@@ -2,7 +2,6 @@ package fb_projectgame.View.Screens;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import fb_projectgame.Constants;
 import fb_projectgame.Model.Menu.MenuItems;
 import fb_projectgame.Model.Menu.Menu;
@@ -14,7 +13,7 @@ import java.net.URISyntaxException;
 
 public class MenuScreen extends ScreenView {
 
-    private Menu menu;
+    private final Menu menu;
     private final MenuItemScreen play;
     private final MenuItemScreen instructions;
     private final MenuItemScreen exit;
@@ -82,14 +81,13 @@ public class MenuScreen extends ScreenView {
 
     public void drawTitle(){
         String title = "FLAPPY BIRD";
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#000000"));
+        setForegroundColor("#000000");
         getGraphics().putString(getTerminalPosition(0.2, title.length()), title);
     }
 
     public TerminalPosition getTerminalPosition(double percentageRows, int stringLen){
         return new TerminalPosition(getSize().getColumns()/2-stringLen/2, (int)(getSize().getRows()*percentageRows));
     }
-
 
     @Override
     public TerminalSize getSize() {

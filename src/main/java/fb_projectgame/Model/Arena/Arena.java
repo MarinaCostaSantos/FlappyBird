@@ -1,12 +1,12 @@
 package fb_projectgame.Model.Arena;
 
+import fb_projectgame.Control.MusicManager;
+import fb_projectgame.Control.Sounds;
 import fb_projectgame.Model.Elements.Bird;
 import fb_projectgame.Model.Elements.Pipe;
-import fb_projectgame.Model.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Arena {
     private final int width;
@@ -49,63 +49,74 @@ public class Arena {
 
 
 
-    public boolean Collision(Position position) {
-        for (Pipe pipe : pipes)
+    public boolean Collision(Bird bird) {
+        boolean col = false;
+        for (Pipe pipe : pipes) {
 
             //colisão lateral
-            if ( (position.getY() <= pipe.getY1() && position.getX() == pipe.getPosition().getX()) ||  (position.getY() >= pipe.getY2() && position.getX() == pipe.getPosition().getX())) {
-                return true;
+            if ((bird.getPosition().getY() <= pipe.getY1() && bird.getPosition().getX() == pipe.getPosition().getX()) ||
+                    (bird.getPosition().getY() >= pipe.getY2() && bird.getPosition().getX() == pipe.getPosition().getX())) {
+                col = true;
+                MusicManager.getInstance().start(Sounds.GAMEOVER);
             }
             //colisão superior
-            else if (position.getY() == pipe.getY1() && position.getX()==pipe.getPosition().getX()  ){
-                return true;
+            else if (bird.getPosition().getY() == pipe.getY1() && bird.getPosition().getX() == pipe.getPosition().getX()) {
+                col = true;
+                MusicManager.getInstance().start(Sounds.GAMEOVER);
             }
             //colisão inferior
-            else if (position.getY() == pipe.getY2() && position.getX()==pipe.getPosition().getX()){
-                return true;
+            else if (bird.getPosition().getY() == pipe.getY2() && bird.getPosition().getX() == pipe.getPosition().getX()) {
+                col = true;
+                MusicManager.getInstance().start(Sounds.GAMEOVER);
             }
             //colisão céu e solo
-            else if (position.getY() == this.getHeight() || position.getY() ==0){
-                return true;
+            else if (bird.getPosition().getY() == this.getHeight() || bird.getPosition().getY() == 0) {
+                col = true;
+                MusicManager.getInstance().start(Sounds.GAMEOVER);
+            }
+
+            if (col){
+                getScore(bird, pipe);
+                MusicManager.getInstance().start(Sounds.WELLDONE);
             }
 
 
-        return false;
+
+        }
+        return col;
     }
 
 
 
     public List<Pipe> createPipes() {
 
-        Random random = new Random();
         List<Pipe> pipes = new ArrayList<>();
         int aux_x = 4* this.width/5;   //posição x dos tubos
-
 
         //i - nr tubos
         for (int i = 0; i < 2000; i++) {
 
             if (i <= 250) { //1ºnível
 
-                pipes.add(new Pipe(aux_x, this.height));
+                pipes.add(new Pipe(aux_x, this.height, 1));
                 aux_x += 20;
             }
 
             if (i > 250 && i <= 600) {//2ºnível
 
-                pipes.add(new Pipe(aux_x, this.height));
+                pipes.add(new Pipe(aux_x, this.height, 2));
                 aux_x += 17;
             }
 
             if (i > 600 && i < 1200) {//3ºnível
 
-                pipes.add(new Pipe(aux_x, this.height));
+                pipes.add(new Pipe(aux_x, this.height, 3));
                 aux_x += 12;
             }
 
-            if (i > 1200 && i < 2000) {//4ºnível
+            if (i > 1200) {//4ºnível
 
-                pipes.add(new Pipe(aux_x, this.height));
+                pipes.add(new Pipe(aux_x, this.height, 4));
                 aux_x += 10;
             }
         }
@@ -114,6 +125,13 @@ public class Arena {
 
     public Bird createBird() {
         return new Bird(this.width / 5, this.height/3);
+    }
+
+    private void getScore(Bird b, Pipe p) {
+
+        if (b.getPosition().getX() == p.getPosition().getX() && b.getPosition().getY() > p.getY1() && b.getPosition().getY() < p.getY2())
+            b.addScore(p.getPoints());
+
     }
 }
 

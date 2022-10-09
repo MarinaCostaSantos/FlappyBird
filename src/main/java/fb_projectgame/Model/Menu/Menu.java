@@ -16,15 +16,14 @@ public class Menu {
             switch (selected) {
                 case PLAY -> selected = MenuItems.INSTRUCTIONS;
                 case INSTRUCTIONS, EXIT -> selected = MenuItems.EXIT;
-            };
+            }
         }
     }
 
     public void selectprevious(){
         if(!choosed) {
             switch (selected) {
-                case PLAY -> selected = MenuItems.PLAY;
-                case INSTRUCTIONS -> selected = MenuItems.PLAY;
+                case PLAY, INSTRUCTIONS -> selected = MenuItems.PLAY;
                 case EXIT -> selected = MenuItems.INSTRUCTIONS;
             }
         }

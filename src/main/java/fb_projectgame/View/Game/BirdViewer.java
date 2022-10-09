@@ -1,7 +1,7 @@
 package fb_projectgame.View.Game;
 
 import fb_projectgame.Model.Elements.Bird;
-import fb_projectgame.gui.GUI;
+import fb_projectgame.View.gui.GUI;
 
 public class BirdViewer implements ElementViewer <Bird> {
     @Override

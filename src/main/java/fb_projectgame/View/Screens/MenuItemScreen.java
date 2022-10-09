@@ -37,7 +37,7 @@ public class MenuItemScreen {
     }
 
     public void drawSelected(){
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        getGraphics().setForegroundColor(TextColor.Factory.fromString("#1B2BA3"));
         getGraphics().putString(getPosition(), menuItem.toString());
     }
     public void drawNotSelected(){

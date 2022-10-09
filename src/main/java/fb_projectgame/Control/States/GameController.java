@@ -1,13 +1,13 @@
 package fb_projectgame.Control.States;
 
 import fb_projectgame.Constants;
-import fb_projectgame.Control.Game.Action;
-import fb_projectgame.Control.Game.BirdGameController;
-import fb_projectgame.Control.Game.PipeGameController;
+import fb_projectgame.Control.Game.BirdElementController;
+import fb_projectgame.Control.Game.PipeElementController;
+import fb_projectgame.Control.MusicManager;
+import fb_projectgame.Control.Sounds;
 import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.View.Screens.GameScreen;
 import fb_projectgame.View.Screens.ScreenView;
-import fb_projectgame.gui.GUI;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,30 +22,24 @@ public class GameController implements StateController, KeyListener {
     private final Arena arena;
     private final ScreenController context;
 
-    private final BirdGameController birdController;
-    private final PipeGameController piperController;
+    private final BirdElementController birdController;
+    private final PipeElementController piperController;
 
 
-    public GameController(ScreenController context)  throws URISyntaxException, FontFormatException, IOException{
+    public GameController(ScreenController context) {
         this.context = context;
         arena = new Arena(Constants.WIDTH,Constants.HEIGHT);
 
         this.screenView = new GameScreen(arena);
 
-        this.birdController = new BirdGameController(arena);
-        this.piperController = new PipeGameController(arena);
+        this.birdController = new BirdElementController(arena);
+        this.piperController = new PipeElementController(arena);
     }
 
     public Arena getArena() {
         return arena;
     }
-    public BirdGameController getBirdController() {
-        return birdController;
-    }
 
-    public PipeGameController getPiperController() {
-        return piperController;
-    }
     public ScreenView getScreenView() {
         return screenView;
     }
@@ -61,7 +55,7 @@ public class GameController implements StateController, KeyListener {
         getScreenView().initScreen();
         getScreenView().addKeyListenner(this);
 
-        while (context.getApplicationState() == ApplicationState.Game && getArena().Collision(getArena().getBird().getPosition()) == false) {
+        while (context.getApplicationState() == ApplicationState.Game && !getArena().Collision(getArena().getBird())) {
             long startTime = System.currentTimeMillis();
 
             getScreenView().draw();
@@ -83,6 +77,7 @@ public class GameController implements StateController, KeyListener {
             if (sleepTime > 0) try {
                 Thread.sleep(sleepTime);
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
         }
@@ -100,7 +95,7 @@ public class GameController implements StateController, KeyListener {
     @Override
     public void nextState() throws URISyntaxException, FontFormatException, IOException{
         context.changeState(ApplicationState.GameOver);
-      //  ((GameOverController)context.getStateControler()).setScore(getGameModel().getPlayer().getScore());
+        ((GameOverController)context.getStateControler()).setScore(getArena().getBird().getScore());
     }
 
 
@@ -117,8 +112,10 @@ public class GameController implements StateController, KeyListener {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
                 nextState();
 
-            if (e.getKeyCode() == KeyEvent.VK_SPACE)
+            if (e.getKeyCode() == KeyEvent.VK_SPACE){
+                MusicManager.getInstance().start(Sounds.JUMP);
                 this.birdController.jumpBird();
+            }
 
         } catch (URISyntaxException u) {
             u.printStackTrace();

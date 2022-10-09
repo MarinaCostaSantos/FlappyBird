@@ -12,13 +12,12 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
-import com.sun.source.tree.NewArrayTree;
-import fb_projectgame.Constants;
+
+
 import fb_projectgame.Model.Elements.Pipe;
 import fb_projectgame.Model.Position;
-import fb_projectgame.gui.GUI;
-import fb_projectgame.gui.LanternaGUI;
+import fb_projectgame.View.gui.GUI;
+
 
 import java.awt.*;
 import java.awt.event.KeyListener;
@@ -34,7 +33,7 @@ public abstract class ScreenView implements GUI{
 
     public void initScreen() throws IOException , FontFormatException, URISyntaxException {
         AWTTerminalFontConfiguration fontConfig = loadSquareFont();
-        Terminal terminal = createTerminal(Constants.WIDTH,Constants.HEIGHT, fontConfig);
+        Terminal terminal = createTerminal(fontConfig);
         screen = createScreen(terminal);
         setGraphics(screen.newTextGraphics());
     }
@@ -50,8 +49,8 @@ public abstract class ScreenView implements GUI{
         return screen;
     }
 
-    private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
-        TerminalSize terminalSize = new TerminalSize(width, height);
+    private Terminal createTerminal(AWTTerminalFontConfiguration fontConfig) throws IOException {
+        TerminalSize terminalSize = getSize();
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
                 .setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
@@ -61,7 +60,7 @@ public abstract class ScreenView implements GUI{
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/veraSansMono.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -95,24 +94,17 @@ public abstract class ScreenView implements GUI{
 
 
     public void drawBird (Position position) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setBackgroundColor(TextColor.Factory.fromString("#F3C91B"));
-        tg.fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
+        setBackgroundColor("#F3C91B");
+        getGraphics().fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
     }
 
     public void drawPipe(Pipe pipe) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setBackgroundColor(TextColor.Factory.fromString("#6BCF68"));
-        tg.fillRectangle(new TerminalPosition(pipe.getPosition().getX(), 0), new TerminalSize(1, pipe.getY1()), ' ');
-        tg.fillRectangle(new TerminalPosition(pipe.getPosition().getX(), pipe.getY2()), new TerminalSize(1, pipe.getYmax() ), ' ');
+        setBackgroundColor("#6BCF68");
+        getGraphics().fillRectangle(new TerminalPosition(pipe.getPosition().getX(), 0), new TerminalSize(1, pipe.getY1()), ' ');
+        getGraphics().fillRectangle(new TerminalPosition(pipe.getPosition().getX(), pipe.getY2()), new TerminalSize(1, pipe.getYmax() ), ' ');
     }
 
 
-    public void drawText(Position position, String text, String color) {
-        TextGraphics tg = screen.newTextGraphics();
-        tg.setForegroundColor(TextColor.Factory.fromString(color));
-        tg.putString(position.getX(), position.getY(), text);
-    }
 
     public abstract void draw() throws IOException;
 
@@ -130,16 +122,16 @@ public abstract class ScreenView implements GUI{
         getScreen().close();
     }
 
-    public void setForegroundColor(){
-        getGraphics().setForegroundColor(TextColor.Factory.fromString("#000000"));
+    public void setForegroundColor(String color){
+        getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
     }
 
-    public void setBackgroundColor(){
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#C4F5FE"));
+    public void setBackgroundColor(String color){
+        getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
     }
 
     public void clear() {
-        getGraphics().setBackgroundColor(TextColor.Factory.fromString("#C4F5FE"));
+        setBackgroundColor("#C4F5FE");
         getGraphics().fillRectangle(new TerminalPosition(0, 0),  getSize(), ' ');
     }
 
@@ -150,5 +142,7 @@ public abstract class ScreenView implements GUI{
     public void setGraphics(TextGraphics graphics) {
         this.graphics = graphics;
     }
+
+
 
 }

@@ -2,9 +2,8 @@ package fb_projectgame.View.Screens;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 
-import java.awt.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -31,14 +30,14 @@ public class InstructionsScreen extends ScreenView{
     public void draw() throws IOException {
         clear();
 
-        Scanner myReader = new Scanner(informationFile, Charset.defaultCharset().name());
+        Scanner myReader = new Scanner(informationFile, Charset.defaultCharset());
         int y = PADDING_Y;
         while (myReader.hasNextLine()) {
             String line = myReader.nextLine();
-            setForegroundColor();
+            setForegroundColor("#000000");
             printLine(line, PADDING_X, y);
             if (redLines.contains(y))
-                drawRedLine(line, y);
+                drawBlueLine(line, y);
 
             y++;
         }
@@ -46,8 +45,8 @@ public class InstructionsScreen extends ScreenView{
         refresh();
     }
 
-    private void drawRedLine(String line, int y){
-        setForegroundColor();
+    private void drawBlueLine(String line, int y){
+        setForegroundColor("#1B2BA3");
         int beginBorder = line.indexOf("||") + 2;
         int endBorder = line.indexOf("||", beginBorder);
         printLine(line.substring(beginBorder, endBorder), PADDING_X + beginBorder, y);
