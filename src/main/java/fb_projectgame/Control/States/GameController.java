@@ -2,10 +2,12 @@ package fb_projectgame.Control.States;
 
 import fb_projectgame.Constants;
 import fb_projectgame.Control.Game.BirdElementController;
+import fb_projectgame.Control.Game.LaserBeamController;
 import fb_projectgame.Control.Game.PipeElementController;
 import fb_projectgame.Control.MusicManager;
 import fb_projectgame.Control.Sounds;
 import fb_projectgame.Model.Arena.Arena;
+import fb_projectgame.Model.Elements.LaserBeam;
 import fb_projectgame.View.Screens.GameScreen;
 import fb_projectgame.View.Screens.ScreenView;
 
@@ -23,7 +25,10 @@ public class GameController implements StateController, KeyListener {
     private final ScreenController context;
 
     private final BirdElementController birdController;
+
     private final PipeElementController piperController;
+
+    private final LaserBeamController laserBeamController;
 
 
     public GameController(ScreenController context) {
@@ -34,6 +39,7 @@ public class GameController implements StateController, KeyListener {
 
         this.birdController = new BirdElementController(arena);
         this.piperController = new PipeElementController(arena);
+        this.laserBeamController = new LaserBeamController(arena);
     }
 
     public Arena getArena() {
@@ -43,6 +49,7 @@ public class GameController implements StateController, KeyListener {
     public ScreenView getScreenView() {
         return screenView;
     }
+
     @Override
     public void run() throws URISyntaxException, FontFormatException, IOException {
 
@@ -61,15 +68,20 @@ public class GameController implements StateController, KeyListener {
             getScreenView().draw();
 
 
-            if (startTime - lastBirdMovement > 100) {
+            if (startTime - lastBirdMovement > 70) {
                 birdController.downBird();
                 lastBirdMovement = startTime;
             }
 
-            if (startTime - lastPipeMovement > 150) {
+            if (startTime - lastPipeMovement > 65) {
                 piperController.movePipes();
+                getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
+                laserBeamController.moveLaserBeams();
+                getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
+
                 lastPipeMovement = startTime;
             }
+
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
@@ -116,6 +128,13 @@ public class GameController implements StateController, KeyListener {
                 MusicManager.getInstance().start(Sounds.JUMP);
                 this.birdController.jumpBird();
             }
+
+           if (e.getKeyCode() == KeyEvent.VK_RIGHT && this.birdController.getArena().getBird().countLaserBeams < this.birdController.getArena().getBird().getMaxBeams()){
+                    MusicManager.getInstance().start(Sounds.SHOOT);
+                    this.birdController.getArena().getBird().addLaserBeam(new LaserBeam(getArena().getBird().getPosition().getX() + 1,getArena().getBird().getPosition().getY() ));
+                    this.birdController.getArena().getBird().countLaserBeams++;
+            }
+
 
         } catch (URISyntaxException u) {
             u.printStackTrace();

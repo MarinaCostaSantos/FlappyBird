@@ -14,6 +14,7 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 
+import fb_projectgame.Model.Elements.LaserBeam;
 import fb_projectgame.Model.Elements.Pipe;
 import fb_projectgame.Model.Position;
 import fb_projectgame.View.gui.GUI;
@@ -60,7 +61,7 @@ public abstract class ScreenView implements GUI{
     }
 
     private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/veraSansMono.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/FlappyBird_Font.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -94,14 +95,30 @@ public abstract class ScreenView implements GUI{
 
 
     public void drawBird (Position position) {
-        setBackgroundColor("#F3C91B");
-        getGraphics().fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), ' ');
+        setBackgroundColor("#C4F5FE");
+        setForegroundColor("#000000");
+        getGraphics().fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), '%');
     }
 
     public void drawPipe(Pipe pipe) {
         setBackgroundColor("#6BCF68");
-        getGraphics().fillRectangle(new TerminalPosition(pipe.getPosition().getX(), 0), new TerminalSize(1, pipe.getY1()), ' ');
+        getGraphics().fillRectangle(new TerminalPosition(pipe.getPosition().getX(), 3), new TerminalSize(1, pipe.getY1()), ' ');
         getGraphics().fillRectangle(new TerminalPosition(pipe.getPosition().getX(), pipe.getY2()), new TerminalSize(1, pipe.getYmax() ), ' ');
+    }
+
+    public void drawLaserBeam(LaserBeam laserBeam) {
+        setBackgroundColor("#C4F5FE");
+        setForegroundColor("#000000");
+        getGraphics().fillRectangle(new TerminalPosition(laserBeam.getPosition().getX(), laserBeam.getPosition().getY()), new TerminalSize(1, 1), '$');
+    }
+
+
+    public void drawText(String string){
+        setBackgroundColor("#8ABAC1");
+        getGraphics().fillRectangle(new TerminalPosition(0, 0),  new TerminalSize(getSize().getColumns(), 3), ' ');
+        setForegroundColor("#000000");
+        getGraphics().putString(1,1,string);
+
     }
 
 

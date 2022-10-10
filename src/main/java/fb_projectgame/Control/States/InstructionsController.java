@@ -16,7 +16,7 @@ public class InstructionsController implements StateController, KeyListener {
 
     public InstructionsController(ScreenController context){
         this.context = context;
-        screenView = new InstructionsScreen(List.of(3, 13, 21));
+        screenView = new InstructionsScreen(List.of(3, 17, 22));
     }
 
     public ScreenView getScreenView() {

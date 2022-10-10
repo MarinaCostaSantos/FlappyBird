@@ -4,11 +4,13 @@ import java.util.Random;
 
 public class Pipe extends Element {
 
-    private final int y1;
-    private final int y2;
+    private int y1;
+    private int y2;
     final private int ymax;
 
     private int points;
+
+    private int h;
 
     public Pipe(int x, int ymax, int points){
         super(x, ymax);
@@ -16,7 +18,7 @@ public class Pipe extends Element {
 
         Random random=new Random();
 
-        int h = 10;
+        this.h = 10;
 
         this.y1= random.nextInt(ymax- h -1)+1;
         this.y2= h +this.y1;
@@ -35,6 +37,13 @@ public class Pipe extends Element {
         return y2;
     }
 
+    public void setY1(int y1) {
+        this.y1 = y1;
+    }
+
+    public void setY2(int y2) {
+        this.y2 = y2;
+    }
 
     public int getYmax() {
         return ymax;
@@ -45,7 +54,5 @@ public class Pipe extends Element {
         return points;
     }
 
-    public void setPoints(int points) {
-        this.points = points;
-    }
+
 }

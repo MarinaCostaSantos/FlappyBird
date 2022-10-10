@@ -21,10 +21,14 @@ public class GameScreen extends ScreenView {
     public void draw() throws IOException {
         clear();
 
-        setForegroundColor("#000000");
         String score = "Score : " + (arena.getBird().getScore());
+        String laserbeams_String = "  Shoots: ";
 
-        getGraphics().putString(1,1,score);
+        for (int i=arena.getBird().getMaxBeams()-arena.getBird().countLaserBeams;i>0;i--)
+            laserbeams_String=laserbeams_String+" $ ";
+
+
+        drawText(score+laserbeams_String);
 
         drawBird(arena.getBird().getPosition());
 
@@ -34,8 +38,18 @@ public class GameScreen extends ScreenView {
             }
         }
 
+        if (arena.getBird().getLaserBeams().size()>0){
+            for (int i=0; i<arena.getBird().getLaserBeams().size(); i++){
+                if (arena.getBird().getLaserBeams().get(i).getPosition().getX() >=0 || arena.getBird().getLaserBeams().get(i).getPosition().getX() <= arena.getWidth()){
+                    drawLaserBeam(arena.getBird().getLaserBeams().get(i));
+                }
+            }
+        }
+
+
         refresh();
     }
+
 
 
 
@@ -46,7 +60,7 @@ public class GameScreen extends ScreenView {
 
     @Override
     public TerminalSize getSize(){
-        return new TerminalSize(Constants.WIDTH, Constants.HEIGHT);
+        return new TerminalSize(50, Constants.HEIGHT);
     }
 
 

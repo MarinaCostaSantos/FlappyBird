@@ -58,6 +58,6 @@ public class InstructionsScreen extends ScreenView{
 
     @Override
     public TerminalSize getSize() {
-        return new TerminalSize(41, 24);
+        return new TerminalSize(50, 25);
     }
 }

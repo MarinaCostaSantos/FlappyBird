@@ -1,22 +1,23 @@
-======I N S T R U C T I O N S========
-||                                 ||
-||         GAME OBJECTIVE:         ||
-||   Your ship is lost in the      ||
-||  middle of the universe.        ||
-||   You must obliterate the aste- ||
-||  roids that are on your way and ||
-||  avoid bumping into them.       ||
-||   Be careful! Some evil ships   ||
-||  may want to annihilate you.    ||
-||  Shoot them first!              ||
-||                                 ||
-||       GAMEPLAY CONTROLS:        ||
-||                                 ||
-||  ARROW_UP    --> MOVES FORWARD  ||
-||  ARROW_LEFT  --> TURNS LEFT     ||
-||  ARROW_RIGHT --> TURNS RIGHT    ||
-||  SPACE BAR   --> SHOOTING       ||
-||  ESC         --> QUIT GAME      ||
-||                                 ||
-||      PRESS ESC TO GO BACK       ||
-=====================================
+============I N S T R U C T I O N S===========
+||                                          ||
+||              GAME OBJECTIVE:             ||
+||  Stay in the middle of the screen until  ||
+||     the first set of pipes appears.      ||
+||      Measure your tap heights to go      ||
+||         between the two pipes.           ||
+||  The faster you tap, the higher you go.  ||
+||   Each tap represents a wing flap and    ||
+||      higher flight. Once you stop,       || 
+||      you drop towards the ground.        ||
+||      Furthemore, you have 3 shoots       ||
+||          to destroy the pipes.           ||
+||                                          ||
+||               Good luck :)               ||
+||                                          ||
+||            GAMEPLAY CONTROLS:            ||
+||         ARROW_RIGHT --> Shooting         ||
+||         SPACE BAR   --> Jump             ||
+||         ESC         --> QUIT GAME        ||
+||                                          ||
+||           PRESS ESC TO GO BACK           ||
+==============================================

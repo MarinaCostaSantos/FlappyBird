@@ -3,7 +3,9 @@ package fb_projectgame.Model.Arena;
 import fb_projectgame.Control.MusicManager;
 import fb_projectgame.Control.Sounds;
 import fb_projectgame.Model.Elements.Bird;
+import fb_projectgame.Model.Elements.LaserBeam;
 import fb_projectgame.Model.Elements.Pipe;
+import fb_projectgame.Model.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,21 +72,62 @@ public class Arena {
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
             }
             //colisão céu e solo
-            else if (bird.getPosition().getY() == this.getHeight() || bird.getPosition().getY() == 0) {
+            else if (bird.getPosition().getY() == this.getHeight()-1 || bird.getPosition().getY() == 3) {
                 col = true;
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
             }
 
-            if (col){
-                getScore(bird, pipe);
-                MusicManager.getInstance().start(Sounds.WELLDONE);
-            }
 
+            getScore(bird, pipe);
 
 
         }
         return col;
     }
+
+    public void CollisionLaserBeam(List<LaserBeam> laserbeam_list) {
+        boolean entrou =false;
+       for (int i=0; i<laserbeam_list.size();i++) {
+
+           if (laserbeam_list.get(i).getPosition().getX() <0 || laserbeam_list.get(i).getPosition().getX() > this.getWidth()) {
+               laserbeam_list.remove(i);
+               break;
+           }
+
+        for (int j=0; j<pipes.size();j++) {
+
+            if (pipes.get(j).getPosition().getX() <0 || pipes.get(j).getPosition().getX() > this.getWidth()) {
+                continue;
+            }
+
+            System.out.println("Pipe: X= " + pipes.get(j).getPosition().getX() + ", Y1= " + pipes.get(j).getY1() + ", Y2= " + pipes.get(j).getY2() + "     LaserBeam: X= " + laserbeam_list.get(i).getPosition().getX() + ", Y= " + laserbeam_list.get(i).getPosition().getY());
+
+            if ((laserbeam_list.get(i).getPosition().getY() <= pipes.get(j).getY1() && laserbeam_list.get(i).getPosition().getX() == pipes.get(j).getPosition().getX()) ||
+                    (laserbeam_list.get(i).getPosition().getY() >= pipes.get(j).getY2() && laserbeam_list.get(i).getPosition().getX() == pipes.get(j).getPosition().getX())) {
+
+                entrou = true;
+
+                    pipes.get(j).setY1(2);
+                    pipes.get(j).setY2(this.getHeight()-1);
+
+                MusicManager.getInstance().start(Sounds.DESTRUCTIONS);
+
+                break;
+
+            }
+
+        }
+           if (entrou){
+               laserbeam_list.remove(i);
+               entrou = false;
+               break;
+           }
+
+       }
+
+    }
+
+
 
 
 

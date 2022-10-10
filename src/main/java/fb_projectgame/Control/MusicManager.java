@@ -4,15 +4,18 @@ public class MusicManager {
 
     private final Music soundTrack;
 
-    private final Music welldone;
+    private final Music shoot;
+
+    private  final Music destruction;
     private final Music jump;
     private final Music gameOver;
     private static MusicManager musicManager;
 
     private MusicManager() {
         soundTrack = new Music("/src/main/resources/Sounds/soundTrack.wav");
-        welldone = new Music("/src/main/resources/Sounds/rocket.wav");
-        jump = new Music("/src/main/resources/Sounds/destruction.wav");
+        shoot = new Music("/src/main/resources/Sounds/shoot.wav");
+        destruction = new Music("/src/main/resources/Sounds/destruction.wav");
+        jump = new Music("/src/main/resources/Sounds/jump.wav");
         gameOver = new Music("/src/main/resources/Sounds/gameOver.wav");
     }
 
@@ -27,23 +30,19 @@ public class MusicManager {
     public void start(Sounds sound) {
         switch(sound) {
             case SOUNDTRACK -> soundTrack.startLoop();
-            case WELLDONE -> welldone.start();
+            case SHOOT -> shoot.start();
+            case DESTRUCTIONS -> destruction.start();
             case JUMP -> jump.start();
-            case GAMEOVER -> gameOver.startLoop();
+            case GAMEOVER -> gameOver.start();
         }
     }
 
-    public void stop(Sounds sound) {
-        switch(sound) {
-            case SOUNDTRACK -> soundTrack.stop();
-            case GAMEOVER -> gameOver.stop();
-        }
-    }
 
     public boolean isPlaying(Sounds sound) {
         return switch (sound) {
             case SOUNDTRACK -> soundTrack.isPlaying();
-            case WELLDONE -> welldone.isPlaying();
+            case SHOOT -> shoot.isPlaying();
+            case DESTRUCTIONS -> destruction.isPlaying();
             case JUMP -> jump.isPlaying();
             case GAMEOVER -> gameOver.isPlaying();
         };
@@ -51,7 +50,8 @@ public class MusicManager {
 
     public void stopAll() {
         soundTrack.stop();
-        welldone.stop();
+        shoot.stop();
+        destruction.stop();
         jump.stop();
         gameOver.stop();
     }
