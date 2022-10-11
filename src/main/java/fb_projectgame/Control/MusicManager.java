@@ -9,6 +9,8 @@ public class MusicManager {
     private  final Music destruction;
     private final Music jump;
     private final Music gameOver;
+
+    private final Music win;
     private static MusicManager musicManager;
 
     private MusicManager() {
@@ -17,6 +19,7 @@ public class MusicManager {
         destruction = new Music("/src/main/resources/Sounds/destruction.wav");
         jump = new Music("/src/main/resources/Sounds/jump.wav");
         gameOver = new Music("/src/main/resources/Sounds/gameOver.wav");
+        win = new Music("/src/main/resources/Sounds/win.wav");
     }
 
     public static MusicManager getInstance() {
@@ -34,6 +37,7 @@ public class MusicManager {
             case DESTRUCTIONS -> destruction.start();
             case JUMP -> jump.start();
             case GAMEOVER -> gameOver.start();
+            case WIN -> win.start();
         }
     }
 
@@ -45,6 +49,7 @@ public class MusicManager {
             case DESTRUCTIONS -> destruction.isPlaying();
             case JUMP -> jump.isPlaying();
             case GAMEOVER -> gameOver.isPlaying();
+            case WIN -> win.isPlaying();
         };
     }
 
@@ -54,6 +59,7 @@ public class MusicManager {
         destruction.stop();
         jump.stop();
         gameOver.stop();
+        win.stop();
     }
 
 }

@@ -1,5 +1,5 @@
 package fb_projectgame.Control;
 
 public enum Sounds {
-    SOUNDTRACK, SHOOT, DESTRUCTIONS, JUMP, GAMEOVER
+    SOUNDTRACK, SHOOT, DESTRUCTIONS, JUMP, GAMEOVER, WIN
 }

@@ -1,25 +1,24 @@
 package fb_projectgame.Control.States;
 
 import fb_projectgame.View.Screens.GameOverScreen;
+import fb_projectgame.View.Screens.WinScreen;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-
-public class GameOverController implements StateController, KeyListener {
+public class WinController implements StateController, KeyListener {
     private final ScreenController context;
-    private final GameOverScreen screenView;
+    private final WinScreen screenView;
 
 
-    public GameOverController(ScreenController context) {
+    public WinController(ScreenController context) {
         this.context = context;
-        screenView = new GameOverScreen();
+        screenView = new WinScreen();
     }
-    public GameOverScreen getScreenView() {
+    public WinScreen getScreenView() {
         return screenView;
     }
 
@@ -29,8 +28,8 @@ public class GameOverController implements StateController, KeyListener {
         getScreenView().addKeyListenner(this);
 
 
-        while (context.getApplicationState() == ApplicationState.GameOver) {
-               getScreenView().draw();
+        while (context.getApplicationState() == ApplicationState.Win) {
+            getScreenView().draw();
         }
 
         getScreenView().removeKeyListenner(this);
@@ -62,16 +61,13 @@ public class GameOverController implements StateController, KeyListener {
             }
 
         }
-         }
+    }
 
 
 
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
-    public void setScore(int score){
-        getScreenView().setScore(score);
     }
 
 

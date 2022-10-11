@@ -16,7 +16,7 @@ public class Pipe extends Element {
 
         Random random=new Random();
 
-        int h = 10;
+        int h = 9;
 
         this.y1= random.nextInt(ymax- h -1)+1;
         this.y2= h +this.y1;

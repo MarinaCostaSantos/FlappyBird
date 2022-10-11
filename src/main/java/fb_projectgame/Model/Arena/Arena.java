@@ -60,22 +60,25 @@ public class Arena {
                     (bird.getPosition().getY() >= pipe.getY2() && bird.getPosition().getX() == pipe.getPosition().getX())) {
                 col = true;
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
+                break;
             }
             //colisão superior
             else if (bird.getPosition().getY() == pipe.getY1() && bird.getPosition().getX() == pipe.getPosition().getX()) {
                 col = true;
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
+                break;
             }
             //colisão inferior
             else if (bird.getPosition().getY() == pipe.getY2() && bird.getPosition().getX() == pipe.getPosition().getX()) {
                 col = true;
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
+                break;
             }
             //colisão céu e solo
             else if (bird.getPosition().getY() == this.getHeight() || bird.getPosition().getY() == 3) {
                 col = true;
-
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
+                break;
             }
 
 
@@ -132,33 +135,39 @@ public class Arena {
     public List<Pipe> createPipes() {
 
         List<Pipe> pipes = new ArrayList<>();
-        int aux_x = 4* this.width/5;   //posição x dos tubos
+        int position_X = 4* this.width/5;   //posição x dos tubos
 
         //i - nr tubos
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 150; i++) {
 
-            if (i <= 250) { //1ºnível
+            if (i <= 20) { //1ºnível
 
-                pipes.add(new Pipe(aux_x, this.height, 1));
-                aux_x += 20;
+                pipes.add(new Pipe(position_X, this.height, 1));
+                position_X += 17;
             }
 
-            if (i > 250 && i <= 600) {//2ºnível
+            if (i > 25 && i <= 50) {//2ºnível
 
-                pipes.add(new Pipe(aux_x, this.height, 2));
-                aux_x += 17;
+                pipes.add(new Pipe(position_X, this.height, 2));
+                position_X += 12;
             }
 
-            if (i > 600 && i < 1200) {//3ºnível
+            if (i > 50 && i < 80) {//3ºnível
 
-                pipes.add(new Pipe(aux_x, this.height, 3));
-                aux_x += 12;
+                pipes.add(new Pipe(position_X, this.height, 3));
+                position_X += 9;
             }
 
-            if (i > 1200) {//4ºnível
+            if (i > 85 && i < 100) {//4ºnível
 
-                pipes.add(new Pipe(aux_x, this.height, 4));
-                aux_x += 10;
+                pipes.add(new Pipe(position_X, this.height, 4));
+                position_X += 6;
+            }
+
+            if (i > 100) {//5ºnível
+
+                pipes.add(new Pipe(position_X, this.height, 4));
+                position_X += 4;
             }
         }
         return pipes;

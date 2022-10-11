@@ -12,24 +12,30 @@ public class GameOverScreen extends ScreenView {
    private String scoreValue;
 
     public GameOverScreen() {
+
         scoreValue = "";
+
     }
+
 
     @Override
     public void draw() throws IOException {
         clear();
-        setForegroundColor("#000000");
 
-        String gameOver = "G A M E   O V E R";
-        String score = "Score : " + scoreValue;
-        String press = "Press ESC to return to Menu";
+            setForegroundColor("#000000");
 
-        getGraphics().putString(getTerminalPosition(0.3, gameOver.length()), gameOver);
-        getGraphics().putString(getTerminalPosition(0.4, score.length()), score);
-        getGraphics().putString(getTerminalPosition(0.8, press.length()), press);
+            String gameOver = "G A M E   O V E R";
+            String score = "Score : " + scoreValue;
+            String press = "Press ESC to return to Menu";
+
+            getGraphics().putString(getTerminalPosition(0.3, gameOver.length()), gameOver);
+            getGraphics().putString(getTerminalPosition(0.4, score.length()), score);
+            getGraphics().putString(getTerminalPosition(0.8, press.length()), press);
+
 
         refresh();
     }
+
 
     @Override
     public TerminalSize getSize() {

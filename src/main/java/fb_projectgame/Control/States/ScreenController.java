@@ -45,6 +45,11 @@ public class ScreenController {
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
                 stateControler = new GameOverController(this);
             }
+            case Win -> {
+                MusicManager.getInstance().stopAll();
+                MusicManager.getInstance().start(Sounds.WIN);
+                stateControler = new WinController(this);
+            }
             case Exit-> {
                 MusicManager.getInstance().stopAll();
                 stateControler=null;
