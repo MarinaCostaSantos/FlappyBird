@@ -12,12 +12,6 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
 
-import fb_projectgame.Model.Elements.LaserBeam;
-import fb_projectgame.Model.Elements.Pipe;
-import fb_projectgame.Model.Position;
-import fb_projectgame.View.gui.GUI;
-
-
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.io.File;
@@ -25,7 +19,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-public abstract class ScreenView implements GUI{
+public abstract class ScreenView {
 
     protected TextGraphics graphics;
     private TerminalScreen screen;
@@ -80,24 +74,6 @@ public abstract class ScreenView implements GUI{
     }
 
 
-    public void drawBird (Position position) {
-        setBackgroundColor("#C4F5FE");
-        setForegroundColor("#000000");
-        getGraphics().fillRectangle(new TerminalPosition(position.getX(), position.getY()), new TerminalSize(1, 1), '%');
-    }
-
-    public void drawPipe(Pipe pipe) {
-        setBackgroundColor("#6BCF68");
-        getGraphics().fillRectangle(new TerminalPosition(pipe.getPosition().getX(), 3), new TerminalSize(1, pipe.getY1()), ' ');
-        getGraphics().fillRectangle(new TerminalPosition(pipe.getPosition().getX(), pipe.getY2()), new TerminalSize(1, pipe.getYmax() ), ' ');
-    }
-
-    public void drawLaserBeam(LaserBeam laserBeam) {
-        setBackgroundColor("#C4F5FE");
-        setForegroundColor("#000000");
-        getGraphics().fillRectangle(new TerminalPosition(laserBeam.getPosition().getX(), laserBeam.getPosition().getY()), new TerminalSize(1, 1), '$');
-    }
-
 
     public void drawText(String string){
         setBackgroundColor("#8ABAC1");
@@ -106,8 +82,6 @@ public abstract class ScreenView implements GUI{
         getGraphics().putString(1,1,string);
 
     }
-
-
 
     public abstract void draw() throws IOException;
 

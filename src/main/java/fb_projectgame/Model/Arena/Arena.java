@@ -101,8 +101,6 @@ public class Arena {
                 continue;
             }
 
-            System.out.println("Pipe: X= " + pipes.get(j).getPosition().getX() + ", Y1= " + pipes.get(j).getY1() + ", Y2= " + pipes.get(j).getY2() + "     LaserBeam: X= " + laserbeam_list.get(i).getPosition().getX() + ", Y= " + laserbeam_list.get(i).getPosition().getY());
-
             if ((laserbeam_list.get(i).getPosition().getY() <= pipes.get(j).getY1() && laserbeam_list.get(i).getPosition().getX() == pipes.get(j).getPosition().getX()) ||
                     (laserbeam_list.get(i).getPosition().getY() >= pipes.get(j).getY2() && laserbeam_list.get(i).getPosition().getX() == pipes.get(j).getPosition().getX())) {
 

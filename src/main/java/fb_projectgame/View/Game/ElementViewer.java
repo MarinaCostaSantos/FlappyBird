@@ -1,9 +1,29 @@
 package fb_projectgame.View.Game;
 
-import fb_projectgame.Model.Elements.Element;
-import fb_projectgame.View.gui.GUI;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
-public interface ElementViewer<T extends Element> {
-    void drawElement(T element, GUI gui);
+import java.io.IOException;
+
+public abstract class ElementViewer {
+    protected TextGraphics graphics;
+    public TextGraphics getGraphics() {
+        return graphics;
+    }
+
+    public void setGraphics(TextGraphics graphics) {
+        this.graphics = graphics;
+    }
+
+    public abstract void draw() throws IOException;
+
+    public void setForegroundColor(String color){
+        getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
+    }
+
+    public void setBackgroundColor(String color){
+        getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
+    }
+
 }
 
