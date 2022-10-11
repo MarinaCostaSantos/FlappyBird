@@ -8,9 +8,7 @@ public class Pipe extends Element {
     private int y2;
     final private int ymax;
 
-    private int points;
-
-    private int h;
+    private final int points;
 
     public Pipe(int x, int ymax, int points){
         super(x, ymax);
@@ -18,7 +16,7 @@ public class Pipe extends Element {
 
         Random random=new Random();
 
-        this.h = 10;
+        int h = 10;
 
         this.y1= random.nextInt(ymax- h -1)+1;
         this.y2= h +this.y1;

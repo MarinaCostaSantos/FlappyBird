@@ -3,8 +3,8 @@ package fb_projectgame.Model;
 import java.util.Objects;
 
 public class Position {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
 
     public Position (int x, int y){

@@ -5,7 +5,7 @@ import fb_projectgame.Control.Sounds;
 import fb_projectgame.Model.Elements.Bird;
 import fb_projectgame.Model.Elements.LaserBeam;
 import fb_projectgame.Model.Elements.Pipe;
-import fb_projectgame.Model.Position;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,8 +72,9 @@ public class Arena {
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
             }
             //colisão céu e solo
-            else if (bird.getPosition().getY() == this.getHeight()-1 || bird.getPosition().getY() == 3) {
+            else if (bird.getPosition().getY() == this.getHeight() || bird.getPosition().getY() == 3) {
                 col = true;
+
                 MusicManager.getInstance().start(Sounds.GAMEOVER);
             }
 
@@ -119,7 +120,6 @@ public class Arena {
         }
            if (entrou){
                laserbeam_list.remove(i);
-               entrou = false;
                break;
            }
 

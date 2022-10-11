@@ -25,7 +25,7 @@ public class GameScreen extends ScreenView {
         String laserbeams_String = "  Shoots: ";
 
         for (int i=arena.getBird().getMaxBeams()-arena.getBird().countLaserBeams;i>0;i--)
-            laserbeams_String=laserbeams_String+" $ ";
+            laserbeams_String=laserbeams_String +" $ ";
 
 
         drawText(score+laserbeams_String);

@@ -6,7 +6,6 @@ import fb_projectgame.Model.Position;
 import java.io.IOException;
 
 public interface GUI {
-    ACTION getNextAction() throws IOException;
 
     void drawBird(Position position);
 
@@ -19,5 +18,4 @@ public interface GUI {
 
     void close() throws IOException;
 
-    enum ACTION {JUMP, DOWN, NONE, QUIT}
 }
