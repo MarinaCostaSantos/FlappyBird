@@ -31,7 +31,7 @@ public abstract class ScreenView {
         setGraphics(screen.newTextGraphics());
     }
 
-    private TerminalScreen createScreen(Terminal terminal) throws IOException {
+    public TerminalScreen createScreen(Terminal terminal) throws IOException {
         final TerminalScreen screen;
         screen = new TerminalScreen(terminal);
 
@@ -42,7 +42,7 @@ public abstract class ScreenView {
         return screen;
     }
 
-    private Terminal createTerminal(AWTTerminalFontConfiguration fontConfig) throws IOException {
+    public Terminal createTerminal(AWTTerminalFontConfiguration fontConfig) throws IOException {
         TerminalSize terminalSize = getSize();
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
                 .setInitialTerminalSize(terminalSize);
@@ -52,7 +52,7 @@ public abstract class ScreenView {
         return terminal;
     }
 
-    private AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
+    public AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
         URL resource = getClass().getClassLoader().getResource("fonts/FlappyBird_Font.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);

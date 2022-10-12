@@ -51,6 +51,7 @@ public class Bird extends Element {
         return maxBeams;
     }
 
-
-
+    public int getCountLaserBeams() {
+        return countLaserBeams;
+    }
 }

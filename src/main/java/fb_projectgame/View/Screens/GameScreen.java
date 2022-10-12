@@ -19,8 +19,8 @@ public class GameScreen extends ScreenView {
 
     private final Arena arena;
 
-    private final BirdViewer birdViewer;
-    private final List<PipeViewer> pipesViewer = new ArrayList<>();
+    private BirdViewer birdViewer;
+    private List<PipeViewer> pipesViewer = new ArrayList<>();
 
     private List<LaserBeamViewer> laserBeamViewer = new ArrayList<>() ;
 
@@ -37,7 +37,27 @@ public class GameScreen extends ScreenView {
         this.laserBeamViewer = laserBeamViewer;
     }
 
-    private void updateLaserBeams(){
+    public void setBirdViewer(BirdViewer birdViewer) {
+        this.birdViewer = birdViewer;
+    }
+
+    public void setPipesViewer(List<PipeViewer> pipesViewer) {
+        this.pipesViewer = pipesViewer;
+    }
+
+    public BirdViewer getBirdViewer() {
+        return birdViewer;
+    }
+
+    public List<PipeViewer> getPipesViewer() {
+        return pipesViewer;
+    }
+
+    public List<LaserBeamViewer> getLaserBeamViewer() {
+        return laserBeamViewer;
+    }
+
+    public void updateLaserBeams(){
         List<LaserBeamViewer> newlaserBeamViewer = new ArrayList<>();
         for (LaserBeam laserBeam: arena.getBird().getLaserBeams())
             newlaserBeamViewer.add( new LaserBeamViewer(laserBeam) );

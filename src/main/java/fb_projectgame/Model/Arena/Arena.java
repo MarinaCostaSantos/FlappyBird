@@ -177,7 +177,7 @@ public class Arena {
         return new Bird(this.width / 5, this.height/3);
     }
 
-    private void getScore(Bird b, Pipe p) {
+    public void getScore(Bird b, Pipe p) {
 
         if (b.getPosition().getX() == p.getPosition().getX() && b.getPosition().getY() > p.getY1() && b.getPosition().getY() < p.getY2())
             b.addScore(p.getPoints());

@@ -50,7 +50,7 @@ public class GameOverScreen extends ScreenView {
         scoreValue = Integer.toString(score);
     }
 
-
-
-
+    public String getScoreValue() {
+        return scoreValue;
+    }
 }

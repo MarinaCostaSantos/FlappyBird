@@ -26,6 +26,7 @@ public class MenuScreen extends ScreenView {
 
     }
 
+
     @Override
     public void initScreen() throws URISyntaxException, FontFormatException, IOException {
         super.initScreen();

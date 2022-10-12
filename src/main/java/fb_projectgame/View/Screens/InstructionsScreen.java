@@ -16,13 +16,13 @@ public class InstructionsScreen extends ScreenView{
 
     public static String ROOT = new File(System.getProperty("user.dir")).getPath();
 
-    private final java.util.List<Integer> redLines;
+    private final java.util.List<Integer> bluelines;
     private final File informationFile;
-    private static final String instructionPath = "/src/main/resources/instructionDraw.txt";
+    public String instructionPath = "/src/main/resources/instructionDraw.txt";
 
 
-    public InstructionsScreen(List<Integer> redLines) {
-        this.redLines = redLines;
+    public InstructionsScreen(List<Integer> bluelines) {
+        this.bluelines = bluelines;
         informationFile = new File(ROOT+instructionPath);
     }
 
@@ -36,7 +36,7 @@ public class InstructionsScreen extends ScreenView{
             String line = myReader.nextLine();
             setForegroundColor("#000000");
             printLine(line, PADDING_X, y);
-            if (redLines.contains(y))
+            if (bluelines.contains(y))
                 drawBlueLine(line, y);
 
             y++;
@@ -59,5 +59,13 @@ public class InstructionsScreen extends ScreenView{
     @Override
     public TerminalSize getSize() {
         return new TerminalSize(50, 25);
+    }
+
+    public void setInstructionPath(String instructionPath) {
+        this.instructionPath = instructionPath;
+    }
+
+    public String getInstructionPath() {
+        return instructionPath;
     }
 }
