@@ -82,16 +82,26 @@ public class GameController implements StateController, KeyListener {
 
             if (startTime - lastBirdMovement > 70) {
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
+<<<<<<< HEAD
                 getBirdController().downBird();
+=======
+                birdController.downBird();
+>>>>>>> e4ef0d990b1b9e1566671cd6f4b07d528e2626db
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
                 lastBirdMovement = startTime;
             }
 
             if (startTime - lastPipeMovement > 65) {
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
+<<<<<<< HEAD
                 getPiperController().movePipes();
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
                 getLaserBeamController().moveLaserBeams();
+=======
+                piperController.movePipes();
+                getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
+                laserBeamController.moveLaserBeams();
+>>>>>>> e4ef0d990b1b9e1566671cd6f4b07d528e2626db
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
 
                 lastPipeMovement = startTime;
@@ -148,14 +158,23 @@ public class GameController implements StateController, KeyListener {
             if (e.getKeyCode() == KeyEvent.VK_SPACE){
                 MusicManager.getInstance().start(Sounds.JUMP);
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
+<<<<<<< HEAD
                 getBirdController().jumpBird();
+=======
+                this.birdController.jumpBird();
+>>>>>>> e4ef0d990b1b9e1566671cd6f4b07d528e2626db
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
             }
 
            if (e.getKeyCode() == KeyEvent.VK_RIGHT && this.birdController.getArena().getBird().countLaserBeams < this.birdController.getArena().getBird().getMaxBeams()){
                     MusicManager.getInstance().start(Sounds.SHOOT);
+<<<<<<< HEAD
                     getBirdController().getArena().getBird().addLaserBeam(new LaserBeam(getArena().getBird().getPosition().getX() + 1,getArena().getBird().getPosition().getY() ));
                     getBirdController().getArena().getBird().countLaserBeams++;
+=======
+                    this.birdController.getArena().getBird().addLaserBeam(new LaserBeam(getArena().getBird().getPosition().getX() + 1,getArena().getBird().getPosition().getY() ));
+                    this.birdController.getArena().getBird().countLaserBeams++;
+>>>>>>> e4ef0d990b1b9e1566671cd6f4b07d528e2626db
             }
 
 
