@@ -19,8 +19,8 @@ public class PipeElementController extends ElementController {
 
         Pipe pipe_aux;
 
-        for (int i=0; i<arena.pipes.size(); i++){
-            pipe_aux = arena.pipes.get(i);
+        for (int i=0; i<arena.getPipes().size(); i++){
+            pipe_aux = arena.getPipes().get(i);
             movePipe(pipe_aux, pipe_aux.getPosition().getLeft());
             newpipes.add(pipe_aux);
         }
@@ -29,7 +29,7 @@ public class PipeElementController extends ElementController {
 
     }
 
-    private void movePipe(Pipe pipe,Position position ) {
+    public void movePipe(Pipe pipe,Position position ) {
             pipe.setPosition(position);
     }
 }

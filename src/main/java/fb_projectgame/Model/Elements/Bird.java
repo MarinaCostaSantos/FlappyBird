@@ -38,6 +38,10 @@ public class Bird extends Element {
         return laserBeams;
     }
 
+    public int getCountLaserBeams() {
+        return countLaserBeams;
+    }
+
     public void setLaserBeams(ArrayList<LaserBeam> laserBeams) {
         this.laserBeams = laserBeams;
     }

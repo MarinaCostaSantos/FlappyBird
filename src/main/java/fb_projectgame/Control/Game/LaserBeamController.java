@@ -28,7 +28,7 @@ public class LaserBeamController extends ElementController {
 
     }
 
-    private void moveLaserBeam(LaserBeam laserBeam, Position position ) {
+    public void moveLaserBeam(LaserBeam laserBeam, Position position ) {
         laserBeam.setPosition(position);
     }
 

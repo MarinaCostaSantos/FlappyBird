@@ -46,6 +46,18 @@ public class GameController implements StateController, KeyListener {
         return arena;
     }
 
+    public BirdElementController getBirdController() {
+        return birdController;
+    }
+
+    public PipeElementController getPiperController() {
+        return piperController;
+    }
+
+    public LaserBeamController getLaserBeamController() {
+        return laserBeamController;
+    }
+
     public ScreenView getScreenView() {
         return screenView;
     }
@@ -70,16 +82,26 @@ public class GameController implements StateController, KeyListener {
 
             if (startTime - lastBirdMovement > 70) {
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
-                birdController.downBird();
+
+                getBirdController().downBird();
+
+                getBirdController().downBird();
+
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
                 lastBirdMovement = startTime;
             }
 
             if (startTime - lastPipeMovement > 65) {
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
-                piperController.movePipes();
+
+                getPiperController().movePipes();
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
-                laserBeamController.moveLaserBeams();
+                getLaserBeamController().moveLaserBeams();
+
+                getPiperController().movePipes();
+                getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
+                getLaserBeamController().moveLaserBeams();
+
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
 
                 lastPipeMovement = startTime;
@@ -136,14 +158,23 @@ public class GameController implements StateController, KeyListener {
             if (e.getKeyCode() == KeyEvent.VK_SPACE){
                 MusicManager.getInstance().start(Sounds.JUMP);
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
-                this.birdController.jumpBird();
+
+                getBirdController().jumpBird();
+
+                getBirdController().jumpBird();
+
                 getArena().CollisionLaserBeam(getArena().getBird().getLaserBeams());
             }
 
            if (e.getKeyCode() == KeyEvent.VK_RIGHT && this.birdController.getArena().getBird().countLaserBeams < this.birdController.getArena().getBird().getMaxBeams()){
                     MusicManager.getInstance().start(Sounds.SHOOT);
-                    this.birdController.getArena().getBird().addLaserBeam(new LaserBeam(getArena().getBird().getPosition().getX() + 1,getArena().getBird().getPosition().getY() ));
-                    this.birdController.getArena().getBird().countLaserBeams++;
+
+                    getBirdController().getArena().getBird().addLaserBeam(new LaserBeam(getArena().getBird().getPosition().getX() + 1,getArena().getBird().getPosition().getY() ));
+                    getBirdController().getArena().getBird().countLaserBeams++;
+
+                    getBirdController().getArena().getBird().addLaserBeam(new LaserBeam(getArena().getBird().getPosition().getX() + 1,getArena().getBird().getPosition().getY() ));
+                    getBirdController().getArena().getBird().countLaserBeams++;
+
             }
 
 

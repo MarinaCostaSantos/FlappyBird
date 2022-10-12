@@ -16,7 +16,7 @@ public class BirdElementController extends ElementController {
     public void downBird() {
         moveBird(arena.getBird().getPosition().getDown());
     }
-    private void moveBird(Position position) {
+    public void moveBird(Position position) {
         arena.getBird().setPosition(position);
     }
 

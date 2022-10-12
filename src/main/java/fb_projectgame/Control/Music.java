@@ -9,13 +9,21 @@ import java.io.File;
 
 public class Music {
 
-    private final Clip sound;
+    private Clip sound;
 
     public Music(String sound) {
         this.sound = loadSound(sound);
     }
 
     public boolean isPlaying(){return sound.isRunning();}
+
+    public Clip getSound() {
+        return sound;
+    }
+
+    public void setSound(Clip sound) {
+        this.sound = sound;
+    }
 
 
     private Clip loadSound(String sound) throws NullPointerException{
