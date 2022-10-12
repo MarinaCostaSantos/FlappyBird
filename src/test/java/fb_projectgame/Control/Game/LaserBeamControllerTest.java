@@ -1,4 +1,4 @@
-package fb_projectgame.Control;
+package fb_projectgame.Control.Game;
 
 import fb_projectgame.Control.Game.LaserBeamController;
 import fb_projectgame.Control.Game.PipeElementController;
@@ -80,3 +80,4 @@ public class LaserBeamControllerTest {
         Assertions.assertTrue(arena==laserbeamController.getArena());
     }
 }
+

@@ -1,5 +1,7 @@
-package fb_projectgame.Control;
+package fb_projectgame.Control.States;
 
+import fb_projectgame.Control.MusicManager;
+import fb_projectgame.Control.Sounds;
 import fb_projectgame.Control.States.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +18,7 @@ public class ScreenControllerTest {
     ScreenController controllerSpy;
 
     @BeforeEach
-    void initController(){
+    void init(){
 
         MusicManager manager= Mockito.mock(MusicManager .class);
         try(MockedStatic<MusicManager > configurationMockedStatic=Mockito.mockStatic(MusicManager.class)) {
@@ -37,7 +39,7 @@ public class ScreenControllerTest {
     @Test
     void getApplicationstate(){
 
-       Assertions.assertNotNull(controllerSpy.getApplicationState());
+        Assertions.assertNotNull(controllerSpy.getApplicationState());
     }
 
     @Test

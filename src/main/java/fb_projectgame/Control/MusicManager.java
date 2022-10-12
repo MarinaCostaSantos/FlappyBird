@@ -2,15 +2,15 @@ package fb_projectgame.Control;
 
 public class MusicManager {
 
-    private final Music soundTrack;
+    private  Music soundTrack;
 
-    private final Music shoot;
+    private Music shoot;
 
-    private  final Music destruction;
-    private final Music jump;
-    private final Music gameOver;
+    private  Music destruction;
+    private Music jump;
+    private Music gameOver;
 
-    private final Music win;
+    private Music win;
     private static MusicManager musicManager;
 
     private MusicManager() {
@@ -27,6 +27,30 @@ public class MusicManager {
             musicManager = new MusicManager();
         }
         return musicManager;
+    }
+
+    public void setSoundTrack(Music soundTrack) {
+        this.soundTrack = soundTrack;
+    }
+
+    public void setShoot(Music shoot) {
+        this.shoot = shoot;
+    }
+
+    public void setJump(Music jump) {
+        this.jump = jump;
+    }
+
+    public void setDestruction(Music destruction) {
+        this.destruction = destruction;
+    }
+
+    public void setGameOver(Music gameOver) {
+        this.gameOver = gameOver;
+    }
+
+    public void setWin(Music win) {
+        this.win = win;
     }
 
 

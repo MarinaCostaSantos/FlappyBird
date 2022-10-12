@@ -1,10 +1,11 @@
-package fb_projectgame.Control;
+package fb_projectgame.Control.States;
 
 import com.googlecode.lanterna.screen.TerminalScreen;
 import fb_projectgame.Control.States.ApplicationState;
-import fb_projectgame.Control.States.InstructionsController;
+import fb_projectgame.Control.States.GameOverController;
 import fb_projectgame.Control.States.ScreenController;
-import fb_projectgame.View.Screens.ScreenView;
+import fb_projectgame.View.Screens.GameOverScreen;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,34 +15,34 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class InstructionsControllerTest {
+public class GameOverControllerTest {
 
     ScreenController context;
-    ScreenView screenViewMock;
+    GameOverScreen screenViewMock;
     TerminalScreen screenMock;
 
-    InstructionsController instructionControllerSpy;
+    GameOverController gameOverControllerSpy;
 
     @BeforeEach
     void init(){
         // create context
         context = Mockito.mock(ScreenController.class);
 
-        // create InstructionController
-        instructionControllerSpy = Mockito.spy(new InstructionsController(context));
+        // create GameOverController
+        gameOverControllerSpy = Mockito.spy(new GameOverController(context));
 
         // create screens Mocks
-        screenViewMock = Mockito.mock(ScreenView.class);
+        screenViewMock = Mockito.mock(GameOverScreen.class);
         screenMock = Mockito.mock(TerminalScreen.class);
         Mockito.when(screenViewMock.getScreen()).thenReturn(screenMock);
-        Mockito.when(instructionControllerSpy.getScreenView()).thenReturn(screenViewMock);
+        Mockito.when(gameOverControllerSpy.getScreenView()).thenReturn(screenViewMock);
     }
 
     @Test
     void getScreenView (){
 
-        instructionControllerSpy.getScreenView();
-        Mockito.verify(instructionControllerSpy,Mockito.times(1)).getScreenView();
+        gameOverControllerSpy.getScreenView();
+        Mockito.verify(gameOverControllerSpy,Mockito.times(1)).getScreenView();
     }
 
     @Test
@@ -49,9 +50,9 @@ public class InstructionsControllerTest {
 
         KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_RIGHT, KeyEvent.CHAR_UNDEFINED);
 
-        instructionControllerSpy.keyTyped(e);
+        gameOverControllerSpy.keyTyped(e);
 
-        Mockito.verify(instructionControllerSpy, Mockito.times(1)).keyTyped(e);
+        Mockito.verify(gameOverControllerSpy, Mockito.times(1)).keyTyped(e);
 
     }
 
@@ -60,9 +61,9 @@ public class InstructionsControllerTest {
 
         KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_RIGHT, KeyEvent.CHAR_UNDEFINED);
 
-        instructionControllerSpy.keyReleased(e);
+        gameOverControllerSpy.keyReleased(e);
 
-        Mockito.verify(instructionControllerSpy, Mockito.times(1)).keyReleased(e);
+        Mockito.verify(gameOverControllerSpy, Mockito.times(1)).keyReleased(e);
 
     }
 
@@ -70,40 +71,40 @@ public class InstructionsControllerTest {
     void processKeyEscape() throws URISyntaxException, IOException, FontFormatException {
         // when
         KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0, KeyEvent.VK_ESCAPE, '\n');
-        instructionControllerSpy.keyPressed(e);
+        gameOverControllerSpy.keyPressed(e);
 
         // then
-        Mockito.verify(instructionControllerSpy, Mockito.times(1)).nextState();
+        Mockito.verify(gameOverControllerSpy, Mockito.times(1)).nextState();
     }
 
     @Test
     void startRun() throws IOException, URISyntaxException, FontFormatException {
         // when
-        instructionControllerSpy.run();
+        gameOverControllerSpy.run();
 
         // then
         Mockito.verify(screenViewMock, Mockito.times(1)).initScreen();
-        Mockito.verify(screenViewMock, Mockito.times(1)).addKeyListenner(instructionControllerSpy);
+        Mockito.verify(screenViewMock, Mockito.times(1)).addKeyListenner(gameOverControllerSpy);
     }
 
     @Test
     void endRun() throws IOException, URISyntaxException, FontFormatException {
         // when
-        instructionControllerSpy.run();
+        gameOverControllerSpy.run();
 
         // then
         Mockito.verify(screenViewMock, Mockito.times(1)).close();
-        Mockito.verify(screenViewMock, Mockito.times(1)).removeKeyListenner(instructionControllerSpy);
+        Mockito.verify(screenViewMock, Mockito.times(1)).removeKeyListenner(gameOverControllerSpy);
     }
 
     @Test
     void testRun() throws IOException, URISyntaxException, FontFormatException {
         // given
-        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Instructions,ApplicationState.Menu);
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.GameOver,ApplicationState.Menu);
 
 
         // when
-        instructionControllerSpy.run();
+        gameOverControllerSpy.run();
 
         // then
         Mockito.verify(screenViewMock, Mockito.times(1)).draw();
@@ -111,11 +112,22 @@ public class InstructionsControllerTest {
     }
 
     @Test
+    void setScore(){
+
+        //when
+        gameOverControllerSpy.setScore(200);
+
+        //then
+        Mockito.verify(screenViewMock,Mockito.times(1)).setScore(200);
+    }
+
+    @Test
     void nexstate() throws URISyntaxException, IOException, FontFormatException {
-        instructionControllerSpy.nextState();
+        gameOverControllerSpy.nextState();
         Mockito.verify(context,Mockito.times(1)).changeState(ApplicationState.Menu);
 
     }
 
 
 }
+

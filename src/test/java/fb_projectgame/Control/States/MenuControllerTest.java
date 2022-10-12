@@ -1,4 +1,4 @@
-package fb_projectgame.Control;
+package fb_projectgame.Control.States;
 
 import com.googlecode.lanterna.screen.TerminalScreen;
 import fb_projectgame.Control.States.ApplicationState;
@@ -26,7 +26,7 @@ public class MenuControllerTest {
 
 
     @BeforeEach
-    void initGameController(){
+    void init(){
         // create context
         context = Mockito.mock(ScreenController.class);
 

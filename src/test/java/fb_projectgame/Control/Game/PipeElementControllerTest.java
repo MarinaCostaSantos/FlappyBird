@@ -1,4 +1,4 @@
-package fb_projectgame.Control;
+package fb_projectgame.Control.Game;
 
 import fb_projectgame.Control.Game.PipeElementController;
 import fb_projectgame.Model.Arena.Arena;
@@ -58,8 +58,8 @@ public class PipeElementControllerTest {
     public void movePipe() throws IOException, URISyntaxException, FontFormatException {
 
 
-       Pipe pipe=Mockito.mock(Pipe.class);
-       Position position=Mockito.mock(Position.class);
+        Pipe pipe=Mockito.mock(Pipe.class);
+        Position position=Mockito.mock(Position.class);
 
 
         pipeController.movePipe(pipe,position);

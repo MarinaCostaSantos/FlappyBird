@@ -1,4 +1,4 @@
-package fb_projectgame.Model;
+package fb_projectgame.Model.Arena;
 
 import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.Model.Elements.Bird;
@@ -259,3 +259,4 @@ public class ArenaTest {
 
 
 }
+

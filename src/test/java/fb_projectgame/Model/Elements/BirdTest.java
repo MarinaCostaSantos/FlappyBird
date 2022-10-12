@@ -1,7 +1,8 @@
-package fb_projectgame.Model;
+package fb_projectgame.Model.Elements;
 
 import fb_projectgame.Model.Elements.Bird;
 import fb_projectgame.Model.Elements.LaserBeam;
+import fb_projectgame.Model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
