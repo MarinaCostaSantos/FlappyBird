@@ -2,8 +2,11 @@ package fb_projectgame.Control.States;
 
 import com.googlecode.lanterna.screen.TerminalScreen;
 import fb_projectgame.Control.Game.BirdElementController;
+import fb_projectgame.Control.Game.LaserBeamController;
+import fb_projectgame.Control.Game.PipeElementController;
 import fb_projectgame.Model.Arena.Arena;
 import fb_projectgame.Model.Elements.Bird;
+import fb_projectgame.Model.Elements.LaserBeam;
 import fb_projectgame.Model.Position;
 import fb_projectgame.View.Screens.ScreenView;
 import org.junit.jupiter.api.Assertions;
@@ -15,6 +18,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class GameControllerTest {
 
@@ -30,9 +34,15 @@ public class GameControllerTest {
 
     BirdElementController birdelementcontroller;
 
+    PipeElementController pipeElementController;
+
+    LaserBeamController laserBeamController;
+
     ScreenView screenviewmock;
 
     TerminalScreen screenmock;
+
+    ArrayList<LaserBeam> laserbeams;
 
 
     @BeforeEach
@@ -52,6 +62,12 @@ public class GameControllerTest {
         birdelementcontroller = Mockito.mock(BirdElementController.class);
         Mockito.when(gamecontrollerspy.getBirdController()).thenReturn(birdelementcontroller);
 
+        pipeElementController=Mockito.mock(PipeElementController.class);
+        Mockito.when(gamecontrollerspy.getPiperController()).thenReturn(pipeElementController);
+
+        laserBeamController=Mockito.mock(LaserBeamController.class);
+        Mockito.when(gamecontrollerspy.getLaserBeamController()).thenReturn(laserBeamController);
+
         arena = Mockito.mock(Arena.class);
         Mockito.when(gamecontrollerspy.getArena()).thenReturn(arena);
         Mockito.when(birdelementcontroller.getArena()).thenReturn(arena);
@@ -62,6 +78,10 @@ public class GameControllerTest {
 
         position = Mockito.mock(Position.class);
         Mockito.when(bird.getPosition()).thenReturn(position);
+
+        laserbeams=Mockito.mock(ArrayList.class);
+        Mockito.when(bird.getLaserBeams()).thenReturn(laserbeams);
+
 
     }
 
@@ -150,6 +170,9 @@ public class GameControllerTest {
         gamecontrollerspy.keyPressed(e);
 
         Mockito.verify(birdelementcontroller, Mockito.times(1)).jumpBird();
+
+        Mockito.verify(arena,Mockito.times(2)).CollisionLaserBeam(laserbeams);
+
     }
 
     @Test
@@ -162,6 +185,8 @@ public class GameControllerTest {
         gamecontrollerspy.keyPressed(e);
 
         Mockito.verify(arena, Mockito.times(4)).getBird();
+        Assertions.assertEquals(1,bird.countLaserBeams);
+
 
     }
 
@@ -187,6 +212,44 @@ public class GameControllerTest {
         Mockito.verify(screenviewmock, Mockito.times(1)).addKeyListenner(gamecontrollerspy);
 
     }
+
+   @Test
+    void runLaserBeamsCollision () throws URISyntaxException, IOException, FontFormatException {
+
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Game, ApplicationState.Menu);
+
+        gamecontrollerspy.run();
+
+        Mockito.verify(arena,Mockito.times(5)).CollisionLaserBeam(laserbeams);
+
+
+    }
+
+    @Test
+    void runMovePipes () throws URISyntaxException, IOException, FontFormatException {
+
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Game, ApplicationState.Menu);
+
+        gamecontrollerspy.run();
+
+        Mockito.verify(pipeElementController,Mockito.times(1)).movePipes();
+
+
+    }
+
+    @Test
+    void runMoveLaserBeams () throws URISyntaxException, IOException, FontFormatException {
+
+        Mockito.when(context.getApplicationState()).thenReturn(ApplicationState.Game, ApplicationState.Menu);
+
+        gamecontrollerspy.run();
+
+        Mockito.verify(laserBeamController,Mockito.times(1)).moveLaserBeams();
+
+
+    }
+
+
 
     @Test
     void endRun() throws IOException, URISyntaxException, FontFormatException {

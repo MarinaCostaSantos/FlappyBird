@@ -24,11 +24,11 @@ public class GameController implements StateController, KeyListener {
     private final Arena arena;
     private final ScreenController context;
 
-    private BirdElementController birdController;
+    private final BirdElementController birdController;
 
-    private PipeElementController piperController;
+    private final PipeElementController piperController;
 
-    private LaserBeamController laserBeamController;
+    private final LaserBeamController laserBeamController;
 
 
     public GameController(ScreenController context) {
@@ -75,7 +75,7 @@ public class GameController implements StateController, KeyListener {
         getScreenView().initScreen();
         getScreenView().addKeyListenner(this);
 
-        while (context.getApplicationState() == ApplicationState.Game && !getArena().Collision(getArena().getBird())  && !birdWin()) {
+        while (context.getApplicationState() == ApplicationState.Game && !getArena().Collision(getArena().getBird())  && endGame()) {
             long startTime = System.currentTimeMillis();
 
             getScreenView().draw();
@@ -123,7 +123,7 @@ public class GameController implements StateController, KeyListener {
 
     @Override
     public void nextState() throws URISyntaxException, FontFormatException, IOException{
-       if (!birdWin()) {
+       if (endGame()) {
            context.changeState(ApplicationState.GameOver);
            ((GameOverController) context.getStateControler()).setScore(getArena().getBird().getScore());
        }
@@ -160,11 +160,7 @@ public class GameController implements StateController, KeyListener {
             }
 
 
-        } catch (URISyntaxException u) {
-            u.printStackTrace();
-        } catch (FontFormatException f) {
-            f.printStackTrace();
-        } catch (IOException i) {
+        } catch (URISyntaxException | FontFormatException | IOException i) {
             i.printStackTrace();
         }
     }
@@ -176,7 +172,7 @@ public class GameController implements StateController, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {}
 
-    public boolean birdWin(){
-        return arena.getBird().getPosition().getX() > arena.getPipes().get(arena.getPipes().size() - 1).getPosition().getX();
+    public boolean endGame(){
+        return arena.getBird().getPosition().getX() <= arena.getPipes().get(arena.getPipes().size() - 1).getPosition().getX();
     }
 }

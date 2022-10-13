@@ -1,5 +1,6 @@
 package fb_projectgame.Model;
 
+import fb_projectgame.Model.Elements.Bird;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,14 +75,14 @@ public class PositionTest {
     public void equals_1(){
         Position position_equals=position;
 
-        Assertions.assertEquals(position, position_equals);
+        Assertions.assertTrue(position.equals(position_equals));
     }
 
     @Test
     public void equals_2(){
-        Position position_equals=new Position(0,0);
+        Position position_equals=null;
 
-        Assertions.assertNotEquals(position, position_equals);
+        Assertions.assertFalse(position.equals(position_equals));
     }
 
     @Test
@@ -97,5 +98,7 @@ public class PositionTest {
 
         Assertions.assertNotNull(position.hashCode());
     }
+
+
 
 }

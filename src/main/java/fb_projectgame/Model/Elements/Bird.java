@@ -7,7 +7,7 @@ public class Bird extends Element {
 
     public static final int MAX_SCORE = 99990;
     private int score;
-    private final int maxBeams = 3;
+    private static final int maxBeams = 3;
 
     public int countLaserBeams=0;
 

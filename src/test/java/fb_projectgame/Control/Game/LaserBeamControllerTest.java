@@ -11,7 +11,6 @@ import org.mockito.Mockito;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LaserBeamControllerTest {
 
@@ -34,7 +33,7 @@ public class LaserBeamControllerTest {
 
         Bird bird=Mockito.mock(Bird.class);
 
-        List <LaserBeam> laser_beams=new ArrayList<>();
+        ArrayList<LaserBeam> laser_beams=new ArrayList<>();
         LaserBeam laser_beam_1=new LaserBeam(5,20);
         LaserBeam laser_beam_2=new LaserBeam(8,20);
         laser_beams.add(laser_beam_1);
@@ -42,7 +41,7 @@ public class LaserBeamControllerTest {
 
 
         Mockito.when(arena.getBird()).thenReturn(bird);
-        Mockito.when(bird.getLaserBeams()).thenReturn((ArrayList<LaserBeam>) laser_beams);
+        Mockito.when(bird.getLaserBeams()).thenReturn(laser_beams);
 
 
         laserbeamController.moveLaserBeams();

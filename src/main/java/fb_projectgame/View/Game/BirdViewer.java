@@ -6,7 +6,7 @@ import fb_projectgame.Model.Elements.Bird;
 
 public class BirdViewer extends  ElementViewer {
 
-    private Bird bird;
+    private final Bird bird;
     public BirdViewer(Bird bird) {
         this.bird = bird;
     }

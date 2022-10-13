@@ -45,17 +45,6 @@ public class GameScreen extends ScreenView {
         this.pipesViewer = pipesViewer;
     }
 
-    public BirdViewer getBirdViewer() {
-        return birdViewer;
-    }
-
-    public List<PipeViewer> getPipesViewer() {
-        return pipesViewer;
-    }
-
-    public List<LaserBeamViewer> getLaserBeamViewer() {
-        return laserBeamViewer;
-    }
 
     public void updateLaserBeams(){
         List<LaserBeamViewer> newlaserBeamViewer = new ArrayList<>();
@@ -71,13 +60,8 @@ public class GameScreen extends ScreenView {
         clear();
 
         String score = "Score : " + (arena.getBird().getScore());
-        String laserbeams_String = "  Shoots: ";
 
-        for (int i=arena.getBird().getMaxBeams()-arena.getBird().countLaserBeams;i>0;i--)
-            laserbeams_String=laserbeams_String +" $ ";
-
-
-        drawText(score+laserbeams_String);
+        drawText(score + "  Shoots: " + " $ ".repeat(Math.max(0, arena.getBird().getMaxBeams() - arena.getBird().countLaserBeams)));
 
        birdViewer.setGraphics(this.getGraphics());
        birdViewer.draw();

@@ -186,11 +186,24 @@ public class ArenaTest {
 
     }
 
+    @Test //sem colisão
+    public void collision_9(){
+
+        Pipe pipe_teste=new Pipe(0,20,1);
+        List <Pipe> pipes=Arrays.asList(pipe_teste);
+        arena.setPipes(pipes);
+
+        Bird bird=new Bird(5,10);
+
+        Assertions.assertFalse(arena.Collision(bird));
+
+    }
+
     @Test
     public void createBird (){
         Bird bird_teste= arena.createBird();
 
-        Assertions.assertNotNull(arena.getBird());
+        Assertions.assertTrue(bird_teste.getPosition().getX()==arena.getWidth()/5 && bird_teste.getPosition().getY()==arena.getHeight()/3);
     }
 
     @Test
@@ -199,6 +212,15 @@ public class ArenaTest {
 
         Assertions.assertNotNull(arena.getPipes());
     }
+
+    @Test
+    public void createPipes_checkSize (){
+        arena.createPipes();
+
+        Assertions.assertEquals(138,arena.getPipes().size());
+    }
+
+
 
     @Test
     public  void CollisionLaserBeam_1 (){
@@ -215,6 +237,7 @@ public class ArenaTest {
         arena.CollisionLaserBeam(laserBeams);
 
         Assertions.assertEquals(2,arena.getPipes().get(0).getY1());
+        Assertions.assertEquals(arena.getHeight()-1,arena.getPipes().get(0).getY2());
     }
 
     @Test
@@ -231,7 +254,67 @@ public class ArenaTest {
 
         arena.CollisionLaserBeam(laserBeams);
 
+        Assertions.assertEquals(2,arena.getPipes().get(0).getY1());
         Assertions.assertEquals(arena.getHeight()-1,arena.getPipes().get(0).getY2());
+    }
+
+    @Test
+    public  void CollisionLaserBeam_3 () {
+
+
+        arena.createPipes();
+
+        for (int i = 0; i < arena.getPipes().size();i++) {
+
+            LaserBeam laserBeam2 = new LaserBeam(arena.getPipes().get(i).getPosition().getX(), arena.getPipes().get(i).getY1()-1);
+            ArrayList<LaserBeam> laserBeams = new ArrayList<>();
+            laserBeams.add(laserBeam2);
+
+            arena.CollisionLaserBeam(laserBeams);
+
+            Assertions.assertEquals(2,arena.getPipes().get(0).getY1());
+            Assertions.assertEquals(arena.getHeight()-1,arena.getPipes().get(0).getY2());
+        }
+
+    }
+
+    @Test
+    public  void CollisionLaserBeam_4 () {
+
+
+        arena.createPipes();
+
+        for (int i = 0; i < arena.getPipes().size();i++) {
+
+            LaserBeam laserBeam2 = new LaserBeam(arena.getPipes().get(i).getPosition().getX(), arena.getPipes().get(i).getY2()+1);
+            ArrayList<LaserBeam> laserBeams = new ArrayList<>();
+            laserBeams.add(laserBeam2);
+
+            arena.CollisionLaserBeam(laserBeams);
+
+            Assertions.assertEquals(2,arena.getPipes().get(0).getY1());
+            Assertions.assertEquals(arena.getHeight()-1,arena.getPipes().get(0).getY2());
+        }
+
+    }
+
+    @Test
+    public  void RemoveBeam () {
+
+
+        arena.createPipes();
+
+        for (int i = 0; i < arena.getPipes().size();i++) {
+
+            LaserBeam laserBeam2 = new LaserBeam(-5, arena.getPipes().get(i).getY1()-1);
+            ArrayList<LaserBeam> laserBeams = new ArrayList<>();
+            laserBeams.add(laserBeam2);
+
+            arena.CollisionLaserBeam(laserBeams);
+
+            Assertions.assertEquals(0,laserBeams.size());
+        }
+
     }
 
     @Test
@@ -255,6 +338,60 @@ public class ArenaTest {
 
         Assertions.assertEquals(1,bird.getScore());
     }
+
+    @Test
+    public void getScore_3 (){
+
+        Pipe pipe=new Pipe(0,20,1);
+        Bird bird=new Bird(-1, pipe.getY2()-1);
+
+        arena.getScore(bird,pipe);
+
+        Assertions.assertEquals(0,bird.getScore());
+    }
+
+    @Test
+    public void checkPipeSpace_17 () {
+
+        arena.createBird();
+
+        Assertions.assertEquals(17,arena.getPipes().get(1).getPosition().getX()-arena.getPipes().get(0).getPosition().getX());
+    }
+
+    @Test
+    public void checkPipeSpace_12 () {
+
+        arena.createBird();
+
+        Assertions.assertEquals(12,arena.getPipes().get(27).getPosition().getX()-arena.getPipes().get(26).getPosition().getX());
+    }
+
+    @Test
+    public void checkPipeSpace_9 () {
+
+        arena.createBird();
+
+        Assertions.assertEquals(9,arena.getPipes().get(57).getPosition().getX()-arena.getPipes().get(56).getPosition().getX());
+    }
+
+    @Test
+    public void checkPipeSpace_6 () {
+
+        arena.createBird();
+
+        Assertions.assertEquals(6,arena.getPipes().get(87).getPosition().getX()-arena.getPipes().get(86).getPosition().getX());
+    }
+
+    @Test
+    public void checkPipeSpace_4 () {
+
+        arena.createBird();
+
+        Assertions.assertEquals(4,arena.getPipes().get(107).getPosition().getX()-arena.getPipes().get(106).getPosition().getX());
+    }
+
+
+
 
 
 

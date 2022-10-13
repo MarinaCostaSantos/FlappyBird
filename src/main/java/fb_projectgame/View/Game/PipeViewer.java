@@ -6,7 +6,7 @@ import fb_projectgame.Model.Elements.Pipe;
 
 public class PipeViewer  extends  ElementViewer {
 
-        private Pipe pipe;
+        private final Pipe pipe;
         public PipeViewer(Pipe pipe) {
             this.pipe = pipe;
         }

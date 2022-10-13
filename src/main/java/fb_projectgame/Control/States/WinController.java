@@ -1,6 +1,5 @@
 package fb_projectgame.Control.States;
 
-import fb_projectgame.View.Screens.GameOverScreen;
 import fb_projectgame.View.Screens.WinScreen;
 
 import java.awt.*;
@@ -52,11 +51,7 @@ public class WinController implements StateController, KeyListener {
 
             try {
                 nextState();
-            } catch (URISyntaxException u){
-                u.printStackTrace();
-            }catch (FontFormatException f){
-                f.printStackTrace();
-            }catch (IOException i){
+            } catch (URISyntaxException| FontFormatException | IOException i){
                 i.printStackTrace();
             }
 

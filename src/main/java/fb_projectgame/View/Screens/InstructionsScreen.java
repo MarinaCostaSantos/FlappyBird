@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class InstructionsScreen extends ScreenView{
     private final int PADDING_X = 2;
-    private final int PADDING_Y = 1;
+    private static final int PADDING_Y = 1;
 
     public static String ROOT = new File(System.getProperty("user.dir")).getPath();
 
@@ -61,11 +61,5 @@ public class InstructionsScreen extends ScreenView{
         return new TerminalSize(50, 25);
     }
 
-    public void setInstructionPath(String instructionPath) {
-        this.instructionPath = instructionPath;
-    }
 
-    public String getInstructionPath() {
-        return instructionPath;
-    }
 }

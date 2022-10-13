@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'info.solidsoft.pitest' version '1.6.0'
 }
 
 group 'fb_projectgame'
@@ -12,6 +13,12 @@ repositories {
 
 application {
     mainClass.set('fb_projectgame.Application')
+}
+
+pitest {
+    junit5PluginVersion = '0.12'
+    pitestVersion = '1.7.4'
+    excludedClasses = ['fb_projectgame.Application']
 }
 
 dependencies {

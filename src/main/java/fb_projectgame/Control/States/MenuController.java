@@ -74,11 +74,7 @@ public class MenuController implements StateController, KeyListener {
 
                 }
 
-            } catch (URISyntaxException u){
-                 u.printStackTrace();
-            }catch (FontFormatException f){
-                f.printStackTrace();
-            }catch (IOException i){
+            } catch (URISyntaxException | FontFormatException | IOException i){
                 i.printStackTrace();
             }
 
