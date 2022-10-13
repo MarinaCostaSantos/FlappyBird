@@ -20,7 +20,7 @@ This project was developed by Basílio Dias and Marina Santos.
 
 ## IMPLEMENTATION - UML
 
-![](image/uml.png)
+![](image/UML.png)
 
 ## DESIGN PATTERNS
 
@@ -131,11 +131,10 @@ Applying the **Singleton** pattern:
 
 ## BETTER CODE HUB
 
-Result of the analysis: 7/10
+Result of the analysis: 8/10
 
 **Failed guidelines:**
 
-- Write Code Once
 - Separate Concerns in Modules;
 - Couple Architecture Components Loosely;
 
@@ -143,6 +142,26 @@ These guidelines were not accomplished because we used the **MVC** pattern. This
 
 ## REFACTORINGS
 
+### Refactoring: Applied MVC Pattern
+- Changed packages and code structure to separate game logic from display.
+
+### Refactoring: Create enum for ApplicationState, Sounds and MenuItems.
+- Replaced code with constants.
+
+### Refactoring: Using KeyListener instead of ProcessKey
+- Substituted Algorithm to read inputs from the user.
+
+### Refactoring: ScreenView
+- Changed variable type from Screen to TerminalScreen.
+
+### Refactoring: Final Entities
+- Declared constants as final.
+
+### Refactoring: ScreenView to BirdViewer, LaserBeamViewer and PipeViewer
+- Removed fields/methods/lines of code from ScreenView to avoid large classes.
+
+### Refactoring: View and ScreenView
+- Extracted and moved methods setBackgroundColor and setForegroundColor
 
 ## CODE SMELLS
 
