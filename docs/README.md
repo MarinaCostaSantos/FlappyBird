@@ -1,6 +1,7 @@
 # FLAPPY BIRD
 
 **Flappy Bird** is an arcade-style game in which the player controls the bird, which persistently falls down. The player is tasked with navigating bird through pairs of pipes that have equally sized gaps placed at random heights. The bird automatically descends and only ascends when the player taps the space key. Each successful pass through a pair of pipes awards the player a point according to the correspondent level. Colliding with a pipe or the ground ends the gameplay. The player wins the game if the bird passes through 150 pipes, corresponding to 5 levels.
+Furthemore, the player has 3 shoots to destroy the pipes.
 
 This project was developed by Basílio Dias and Marina Santos.
 
